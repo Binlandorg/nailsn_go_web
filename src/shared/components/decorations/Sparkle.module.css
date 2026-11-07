@@ -1,0 +1,33 @@
+.sparkle {
+  position: absolute;
+  pointer-events: none;
+  animation: twinkle 3.2s ease-in-out infinite;
+}
+
+.fuchsia {
+  color: var(--color-fuchsia);
+}
+
+.bubblegum {
+  color: var(--color-bubblegum);
+}
+
+.white {
+  color: var(--color-white);
+}
+
+.nude {
+  color: var(--color-nude);
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+  50% {
+    opacity: 0.35;
+    transform: scale(0.55) rotate(45deg);
+  }
+}

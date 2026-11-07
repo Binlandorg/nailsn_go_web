@@ -1,0 +1,36 @@
+.reveal {
+  opacity: 0;
+  transition:
+    opacity 0.9s var(--ease-out),
+    transform 1s var(--ease-out),
+    filter 0.9s var(--ease-out);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+.up {
+  transform: translateY(48px);
+}
+
+.left {
+  transform: translateX(-56px);
+}
+
+.right {
+  transform: translateX(56px);
+}
+
+.zoom {
+  transform: scale(0.88);
+  filter: blur(6px);
+}
+
+.tilt {
+  transform: translateY(40px) rotate(-4deg);
+}
+
+.visible {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}

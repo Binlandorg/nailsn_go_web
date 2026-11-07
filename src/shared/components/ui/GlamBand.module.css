@@ -1,0 +1,50 @@
+.band {
+  position: relative;
+  z-index: 2;
+  height: clamp(130px, 14vw, 180px);
+  margin-top: -70px;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+}
+
+.back,
+.front {
+  position: absolute;
+  left: -5%;
+  width: 110%;
+  padding-block: 16px;
+  mask-image: none;
+}
+
+.back {
+  background: var(--color-bubblegum);
+  transform: rotate(2.5deg);
+  color: var(--color-white);
+}
+
+.front {
+  background: var(--color-fuchsia);
+  transform: rotate(-2.5deg);
+  color: var(--color-white);
+  box-shadow: var(--shadow-soft);
+}
+
+.word {
+  font-size: clamp(1.4rem, 2.6vw, 2.2rem);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+}
+
+.back .word {
+  font-weight: 700;
+  opacity: 0.9;
+}
+
+.sparkle {
+  width: 22px;
+  height: 22px;
+  color: var(--color-blush);
+  flex-shrink: 0;
+}

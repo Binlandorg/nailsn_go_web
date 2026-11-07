@@ -1,0 +1,181 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 12px;
+  border-radius: var(--radius-lg);
+  background: var(--color-blush);
+  transition:
+    transform 0.5s var(--ease-out),
+    box-shadow 0.5s var(--ease-out),
+    background-color 0.4s ease;
+}
+
+.card:hover {
+  transform: translateY(-10px) rotate(-0.6deg);
+  box-shadow: var(--shadow-card);
+  background: var(--color-white);
+}
+
+.media {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: calc(var(--radius-lg) - 10px);
+}
+
+.media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.9s var(--ease-out);
+}
+
+.card:hover .media img {
+  transform: scale(1.08) rotate(1deg);
+}
+
+.duration,
+.ribbon {
+  position: absolute;
+  top: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 12px;
+  border-radius: var(--radius-pill);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.duration {
+  left: 14px;
+  background: rgb(255 255 255 / 0.9);
+  color: var(--color-plum);
+  backdrop-filter: blur(6px);
+}
+
+.ribbon {
+  right: 14px;
+  background: var(--color-white);
+  color: var(--color-fuchsia);
+  animation: wiggle 3s ease-in-out infinite;
+}
+
+.duration svg,
+.ribbon svg {
+  width: 14px;
+  height: 14px;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 10px;
+  padding: 22px 14px 10px;
+}
+
+.name {
+  font-size: var(--text-h3);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.description {
+  color: var(--color-plum-soft);
+  font-size: 0.96rem;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: 12px;
+}
+
+.price {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--color-fuchsia);
+}
+
+.price span {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-plum-soft);
+}
+
+.book {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--color-white);
+  color: var(--color-fuchsia);
+  box-shadow: inset 0 0 0 2px var(--color-pastel);
+  transition:
+    transform 0.4s var(--ease-bounce),
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+.book svg {
+  width: 20px;
+  height: 20px;
+}
+
+.card:hover .book {
+  background: var(--color-fuchsia);
+  color: var(--color-white);
+  transform: rotate(45deg);
+}
+
+/* Tarjeta destacada en fucsia */
+.featured {
+  background: var(--gradient-glam);
+  color: var(--color-white);
+}
+
+.featured:hover {
+  background: var(--gradient-glam);
+}
+
+.featured .description,
+.featured .price span {
+  color: rgb(255 255 255 / 0.85);
+}
+
+.featured .price {
+  color: var(--color-white);
+}
+
+.featured .book {
+  box-shadow: none;
+}
+
+.featured:hover .book {
+  background: var(--color-plum);
+}
+
+@keyframes wiggle {
+  0%,
+  80%,
+  100% {
+    transform: rotate(0);
+  }
+  85% {
+    transform: rotate(-8deg);
+  }
+  90% {
+    transform: rotate(8deg);
+  }
+  95% {
+    transform: rotate(-4deg);
+  }
+}

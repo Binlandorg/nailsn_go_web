@@ -1,0 +1,47 @@
+.logo {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  position: relative;
+}
+
+.brush {
+  width: 22px;
+  height: 22px;
+  align-self: center;
+  fill: var(--color-fuchsia);
+  transition: transform 0.5s var(--ease-bounce);
+}
+
+.logo:hover .brush {
+  transform: rotate(-24deg) translateY(-2px);
+}
+
+.word {
+  font-weight: 800;
+  font-size: 1.35rem;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.script {
+  font-family: var(--font-script);
+  font-size: 1.7rem;
+  line-height: 0;
+  color: var(--color-fuchsia);
+  transform: rotate(-6deg);
+}
+
+.dark .word {
+  color: var(--color-plum);
+}
+
+.light .word {
+  color: var(--color-white);
+}
+
+.light .script,
+.light .brush {
+  color: var(--color-bubblegum);
+  fill: var(--color-bubblegum);
+}
