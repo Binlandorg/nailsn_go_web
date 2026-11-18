@@ -1,64 +1,114 @@
-import { photos } from '../../../config/photos'
+export type CategoryId = 'unas' | 'pedicure' | 'pestanas-cejas' | 'faciales' | 'depilacion'
+
+export interface Category {
+  id: CategoryId
+  name: string
+}
 
 export interface Service {
   id: string
+  category: CategoryId
   name: string
   description: string
+  detail: string
   duration: string
   price: string
-  image: string
-  featured?: boolean
 }
 
-// TODO: ajustar precios y duraciones reales.
+export const categories: Category[] = [
+  { id: 'unas', name: 'Uñas' },
+  { id: 'pedicure', name: 'Pedicure spa' },
+  { id: 'pestanas-cejas', name: 'Pestañas y cejas' },
+  { id: 'faciales', name: 'Faciales' },
+  { id: 'depilacion', name: 'Depilación' },
+]
+
 export const services: Service[] = [
   {
     id: 'manicure',
-    name: 'Manicure clásica',
-    description: 'Limado, cutícula y esmaltado tradicional con un acabado impecable.',
-    duration: '45 min',
-    price: '$15',
-    image: photos.nudeManicure,
+    category: 'unas',
+    name: 'Manicure',
+    description: 'Limpieza, forma y esmaltado para unas manos impecables.',
+    detail: 'Cuidado completo de tus manos: limpieza, forma de uñas y esmaltado en el color que elijas.',
+    duration: 'Por confirmar',
+    price: 'Desde S/ —',
   },
   {
-    id: 'gel',
-    name: 'Semipermanente',
-    description: 'Color intenso y brillo espejo que dura hasta tres semanas.',
-    duration: '60 min',
-    price: '$25',
-    image: photos.lilacGlitter,
+    id: 'sistema-unas',
+    category: 'unas',
+    name: 'Sistema de uñas',
+    description: 'Uñas resistentes y con el largo que quieres.',
+    detail: 'Aplicación de sistema de uñas para lograr largo, forma y resistencia. Pregunta por los tipos disponibles.',
+    duration: 'Por confirmar',
+    price: 'Desde S/ —',
   },
   {
-    id: 'nail-art',
-    name: 'Nail art glam',
-    description: 'Diseños únicos a mano alzada: corazones, chrome, francesas y lo que imagines.',
-    duration: '90 min',
-    price: '$35',
-    image: photos.colorArt,
-    featured: true,
+    id: 'disenos',
+    category: 'unas',
+    name: 'Diseños y decoración',
+    description: 'Francesa, pedrería y diseños para darle tu estilo.',
+    detail: 'Agrega a tu manicure o sistema un acabado especial: francesa, pedrería o un diseño a tu gusto.',
+    duration: 'Por confirmar',
+    price: 'Desde S/ —',
   },
   {
-    id: 'acrilicas',
-    name: 'Uñas acrílicas',
-    description: 'Extensiones esculpidas con la forma y largo que siempre soñaste.',
-    duration: '120 min',
-    price: '$40',
-    image: photos.gelProcess,
-  },
-  {
-    id: 'pedicure',
+    id: 'pedicure-spa',
+    category: 'pedicure',
     name: 'Pedicure spa',
-    description: 'Baño relajante, exfoliación e hidratación profunda para tus pies.',
-    duration: '60 min',
-    price: '$25',
-    image: photos.pedicure,
+    description: 'En sillón spa con tina, para descansar mientras te atendemos.',
+    detail: 'Cuidado de pies en nuestros sillones spa con tina: limpieza, forma de uñas y esmaltado, en un ambiente para relajarte.',
+    duration: 'Por confirmar',
+    price: 'Desde S/ —',
   },
   {
-    id: 'soft-french',
-    name: 'Soft french & baby boomer',
-    description: 'El clásico elegante en versión degradada, sutil y siempre en tendencia.',
-    duration: '75 min',
-    price: '$30',
-    image: photos.softFrench,
+    id: 'extensiones-pestanas',
+    category: 'pestanas-cejas',
+    name: 'Extensiones de pestañas',
+    description: 'Una mirada definida desde que te levantas.',
+    detail: 'Aplicación de extensiones de pestañas para dar largo y volumen a tu mirada. Pregunta por los estilos disponibles.',
+    duration: 'Por confirmar',
+    price: 'Desde S/ —',
+  },
+  {
+    id: 'micropigmentacion-cejas',
+    category: 'pestanas-cejas',
+    name: 'Micropigmentación de cejas',
+    description: 'Cejas con forma y color que enmarcan tu rostro.',
+    detail: 'Técnica de micropigmentación para definir la forma y el color de tus cejas.',
+    duration: 'Por confirmar',
+    price: 'Desde S/ —',
+  },
+  {
+    id: 'tratamientos-faciales',
+    category: 'faciales',
+    name: 'Tratamientos faciales',
+    description: 'Limpieza y cuidado para una piel luminosa.',
+    detail: 'Tratamientos de limpieza y cuidado facial según lo que necesite tu piel.',
+    duration: 'Por confirmar',
+    price: 'Desde S/ —',
+  },
+  {
+    id: 'micropigmentacion-labios',
+    category: 'faciales',
+    name: 'Micropigmentación de labios',
+    description: 'Color y definición natural para tus labios.',
+    detail: 'Técnica de micropigmentación para dar color y definición a tus labios.',
+    duration: 'Por confirmar',
+    price: 'Desde S/ —',
+  },
+  {
+    id: 'depilacion',
+    category: 'depilacion',
+    name: 'Depilación',
+    description: 'Piel suave con un servicio rápido y cuidadoso.',
+    detail: 'Depilación por zonas. Pregunta por las zonas y el método disponibles.',
+    duration: 'Por confirmar',
+    price: 'Desde S/ —',
   },
 ]
+
+export const categoryName = (id: CategoryId) => categories.find((c) => c.id === id)?.name ?? ''
+
+export const servicesByCategory = categories
+  .map((category) => ({ category, items: services.filter((s) => s.category === category.id) }))
+  .filter((group) => group.items.length > 0)

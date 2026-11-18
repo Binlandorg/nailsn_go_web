@@ -1,40 +1,63 @@
-import { Marquee } from '../../../shared/components/ui/Marquee'
-import { ScriptText } from '../../../shared/components/ui/ScriptText'
-import { SectionHeading } from '../../../shared/components/ui/SectionHeading'
-import { Sparkle } from '../../../shared/components/decorations/Sparkle'
+import { site } from '../../../config/site'
+import { Badge } from '../../../shared/components/ui/Badge'
+import { Button } from '../../../shared/components/ui/Button'
+import { SectionHead } from '../../../shared/components/ui/SectionHead'
+import { useCarouselDots } from '../../../shared/hooks/useCarouselDots'
 import { testimonials } from '../data/testimonials'
-import { TestimonialCard } from './TestimonialCard'
 import styles from './TestimonialsSection.module.css'
 
-// la segunda fila va en orden inverso para que nunca coincidan las mismas tarjetas
-const rows = [testimonials, testimonials.toReversed()]
-
 export function TestimonialsSection() {
-  return (
-    <section id="opiniones" className={styles.section}>
-      <Sparkle size={36} tone="white" className={styles.sparkleA} />
-      <Sparkle size={20} delay={700} className={styles.sparkleB} />
+  const { trackRef, active, goTo } = useCarouselDots<HTMLUListElement>()
 
-      <div className="container">
-        <SectionHeading
-          align="center"
-          eyebrow="Opiniones"
+  return (
+    <section className={`section ${styles.testimonials}`} id="testimonios" aria-labelledby="testimonios-title">
+      <div className="wrap">
+        <SectionHead
+          eyebrow="Testimonios"
+          titleId="testimonios-title"
           title={
             <>
-              Lo que dicen <ScriptText>nuestras clientas</ScriptText>
+              Lo que dicen nuestras <em>clientas</em>
             </>
           }
         />
-      </div>
-
-      <div className={styles.rows}>
-        {rows.map((row, index) => (
-          <Marquee key={index} duration={44} reverse={index % 2 === 1} pauseOnHover className={styles.row}>
-            {row.map((testimonial) => (
-              <TestimonialCard key={testimonial.id} testimonial={testimonial} />
-            ))}
-          </Marquee>
-        ))}
+        <ul ref={trackRef} className={styles.list}>
+          {testimonials.map((item) => (
+            <li key={item.id} className={styles.card}>
+              <span className={styles.quote} aria-hidden="true">
+                &ldquo;
+              </span>
+              <p className={styles.text}>{item.quote}</p>
+              <div className={styles.who}>
+                <span className={styles.avatar} aria-hidden="true" />
+                <span>{item.author}</span>
+              </div>
+              {!item.confirmed && <Badge>Por recopilar</Badge>}
+            </li>
+          ))}
+        </ul>
+        <div className={styles.dots} role="group" aria-label="Elegir testimonio">
+          {testimonials.map((item, i) => (
+            <button
+              key={item.id}
+              type="button"
+              className={styles.dot}
+              aria-label={`Ir a la tarjeta ${i + 1}`}
+              aria-current={active === i}
+              onClick={() => goTo(i)}
+            />
+          ))}
+        </div>
+        <div className="center">
+          <Button href={site.reviewsUrl ?? '#'} variant="outline" aria-describedby="resenas-nota">
+            Ver reseñas en Google
+          </Button>
+          {!site.reviewsUrl && (
+            <p className="fine" id="resenas-nota">
+              Enlace pendiente.
+            </p>
+          )}
+        </div>
       </div>
     </section>
   )

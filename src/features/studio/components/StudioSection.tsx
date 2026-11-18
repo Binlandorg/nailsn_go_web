@@ -1,45 +1,68 @@
-import { Button } from '../../../shared/components/ui/Button'
-import { Reveal } from '../../../shared/components/ui/Reveal'
-import { ScriptText } from '../../../shared/components/ui/ScriptText'
-import { SectionHeading } from '../../../shared/components/ui/SectionHeading'
-import { ArrowRightIcon } from '../../../shared/components/icons/icons'
-import { highlights } from '../data/highlights'
-import { HighlightItem } from './HighlightItem'
-import { StudioCollage } from './StudioCollage'
+import { photos } from '../../../config/photos'
+import { PlayIcon, ShieldIcon } from '../../../shared/components/icons/icons'
+import { Badge } from '../../../shared/components/ui/Badge'
+import split from '../../../shared/components/ui/Split.module.css'
+import { useReveal } from '../../../shared/components/ui/useReveal'
 import styles from './StudioSection.module.css'
 
-export function StudioSection() {
+const clips = ['Video vertical del estudio', 'Video vertical de un servicio']
+
+function Clip({ caption }: { caption: string }) {
+  const { ref, revealClass } = useReveal<HTMLDivElement>()
   return (
-    <section id="estudio" className={styles.section}>
-      <div className={`container ${styles.grid}`}>
-        <StudioCollage />
+    <div ref={ref} className={`${styles.clip} ${revealClass}`}>
+      <PlayIcon />
+      <span>Clip próximamente</span>
+      <small>{caption}</small>
+    </div>
+  )
+}
 
-        <div className={styles.content}>
-          <SectionHeading
-            eyebrow="Nuestro estudio"
-            title={
-              <>
-                Tu momento <ScriptText>para brillar</ScriptText>
-              </>
-            }
-            description="En Nails & Go creemos que unas uñas bonitas cambian el día. Por eso cuidamos cada detalle: la música, el café, la técnica y, sobre todo, cómo te vas sintiendo."
-          />
+export function StudioSection() {
+  const { ref: photoRef, revealClass: photoReveal } = useReveal<HTMLElement>()
+  const { ref: hygieneRef, revealClass: hygieneReveal } = useReveal<HTMLDivElement>()
 
-          <ul className={styles.highlights}>
-            {highlights.map((highlight, index) => (
-              <li key={highlight.title}>
-                <Reveal delay={index * 100}>
-                  <HighlightItem highlight={highlight} />
-                </Reveal>
-              </li>
-            ))}
-          </ul>
-
-          <Reveal delay={300}>
-            <Button href="#contacto" icon={<ArrowRightIcon />}>
-              Quiero mi cita
-            </Button>
-          </Reveal>
+  return (
+    <section className={`section ${styles.studio}`} id="estudio" aria-labelledby="estudio-title">
+      <div className="wrap">
+        <div className={split.inner}>
+          <figure ref={photoRef} className={`${split.photo} ${styles.mainPhoto} ${photoReveal}`}>
+            <img
+              src={photos.interior.src}
+              alt="Zona de pedicure con sillones de terciopelo lila, tinas y la frase Good Nails en la pared rosa"
+              width={photos.interior.width}
+              height={photos.interior.height}
+              loading="lazy"
+            />
+          </figure>
+          <div className={split.text}>
+            <p className="eyebrow">El estudio</p>
+            <h2 id="estudio-title">
+              Un espacio para <em>consentirte</em>
+            </h2>
+            <p>
+              Sillones de terciopelo, tonos rosa y luz suave. Nuestra zona de pedicure spa está pensada para que te relajes mientras cuidamos tus manos y pies.
+            </p>
+            <ul className={styles.ticks}>
+              <li>Sillones spa con tina para pedicure</li>
+              <li>Recepción con jardín vertical</li>
+              <li>Atención con cita por WhatsApp</li>
+            </ul>
+          </div>
+        </div>
+        <div className={styles.extra}>
+          <figure className={`${styles.clip} ${styles.clipPhoto}`}>
+            <img src={photos.interior.src} alt="Zona de pedicure con sillones de terciopelo lila" width={photos.interior.width} height={photos.interior.height} loading="lazy" />
+          </figure>
+          {clips.map((caption) => (
+            <Clip key={caption} caption={caption} />
+          ))}
+          <div ref={hygieneRef} className={`${styles.hygiene} ${hygieneReveal}`}>
+            <ShieldIcon />
+            <h3>Higiene y esterilización</h3>
+            <p>Aquí contaremos cómo limpiamos y esterilizamos las herramientas y qué material usamos en cada servicio.</p>
+            <Badge />
+          </div>
         </div>
       </div>
     </section>

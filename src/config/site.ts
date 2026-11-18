@@ -1,21 +1,19 @@
-// Datos de contacto de la marca.
-// TODO: reemplazar los valores de ejemplo por los reales del estudio.
 export const site = {
   name: 'Nails & Go Studio',
-  tagline: 'Uñas con actitud, hechas a tu medida',
-  instagram: {
-    handle: '@nailsandgo.studio',
-    url: 'https://www.instagram.com/',
-  },
+  tagline: 'Good Day, Good Nails, Good Mood.',
   whatsapp: {
-    display: '+00 000 000 000',
-    url: 'https://wa.me/',
+    number: '51984151390',
+    display: '984 151 390',
+    greeting: 'Hola Nails & Go Studio, quisiera reservar una cita',
   },
-  address: 'Dirección del estudio, Ciudad',
-  mapsUrl: 'https://maps.google.com/',
-  schedule: [
-    { days: 'Lunes a viernes', hours: '10:00 – 20:00' },
-    { days: 'Sábados', hours: '09:00 – 18:00' },
-    { days: 'Domingos', hours: 'Solo con cita' },
-  ],
-} as const
+  instagram: {
+    handle: '@nailsn_go',
+    url: 'https://www.instagram.com/nailsn_go/',
+  },
+  address: null as string | null,
+  schedule: null as string | null,
+  mapsEmbedUrl: null as string | null,
+  reviewsUrl: null as string | null,
+  pending: 'Por confirmar',
+  demoNote: 'Demo preparada por Binland. Imágenes referenciales.',
+}

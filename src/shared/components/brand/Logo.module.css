@@ -1,47 +1,38 @@
-.logo {
-  display: inline-flex;
-  align-items: baseline;
-  gap: 6px;
-  position: relative;
-}
-
-.brush {
-  width: 22px;
-  height: 22px;
-  align-self: center;
-  fill: var(--color-fuchsia);
-  transition: transform 0.5s var(--ease-bounce);
-}
-
-.logo:hover .brush {
-  transform: rotate(-24deg) translateY(-2px);
-}
-
+.brand { display: inline-flex; flex-direction: column; align-items: center; line-height: 1; white-space: nowrap; }
 .word {
-  font-weight: 800;
-  font-size: 1.35rem;
+  font-family: var(--geo);
+  font-weight: 400;
+  font-size: 22px;
+  letter-spacing: 0.16em;
+  color: var(--gold);
+  padding-left: 0.16em;
+  text-shadow: 0 1px 0 rgba(138, 106, 44, 0.25);
+}
+.a { position: relative; display: inline-block; }
+.brush {
+  position: absolute;
+  left: 38%;
+  bottom: 74%;
+  width: 0.62em;
+  height: 0.86em;
+  fill: var(--neon);
+  stroke: var(--neon);
+  stroke-width: 2.2;
+  stroke-linecap: round;
+}
+.brush rect { stroke: none; }
+.sub {
+  font-family: var(--round);
+  font-weight: 600;
+  font-size: 13px;
   letter-spacing: 0.02em;
-  text-transform: uppercase;
+  color: var(--ink);
+  margin-top: 4px;
 }
+.light .sub { color: var(--white); }
+.header .word { font-size: 19px; }
+.header .sub { font-size: 12px; margin-top: 3px; }
 
-.script {
-  font-family: var(--font-script);
-  font-size: 1.7rem;
-  line-height: 0;
-  color: var(--color-fuchsia);
-  transform: rotate(-6deg);
-}
-
-.dark .word {
-  color: var(--color-plum);
-}
-
-.light .word {
-  color: var(--color-white);
-}
-
-.light .script,
-.light .brush {
-  color: var(--color-bubblegum);
-  fill: var(--color-bubblegum);
+@media (max-width: 767px) {
+  .header .word { font-size: 18px; }
 }

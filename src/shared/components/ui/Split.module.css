@@ -1,0 +1,18 @@
+.inner { display: grid; gap: 40px; align-items: center; }
+.photo { position: relative; border-radius: 28px; overflow: hidden; box-shadow: 0 30px 60px -36px rgba(42, 23, 38, 0.55); aspect-ratio: 4 / 5; }
+.photo img { width: 100%; height: 100%; object-fit: cover; }
+.text h2 { margin-bottom: 20px; }
+.text > p:not(:global(.eyebrow)):not(:global(.fine)) { color: var(--ink-soft); font-size: 17px; max-width: 480px; }
+
+@media (min-width: 960px) {
+  .inner { grid-template-columns: 1fr 1fr; gap: 80px; }
+  .reverse .photo { order: 2; }
+  .photo { max-height: 640px; }
+}
+
+@media (max-width: 767px) {
+  .inner { gap: 22px; grid-template-columns: minmax(0, 1fr); }
+  .text { min-width: 0; }
+  .text h2 { margin-bottom: 12px; }
+  .text > p:not(:global(.eyebrow)):not(:global(.fine)) { font-size: 15px; }
+}
