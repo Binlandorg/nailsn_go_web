@@ -13,7 +13,7 @@
 
 .veil {
   position: absolute; inset: 0;
-  background: linear-gradient(90deg, rgba(42, 23, 38, 0.72) 0%, rgba(42, 23, 38, 0.45) 40%, rgba(42, 23, 38, 0) 72%);
+  background: linear-gradient(90deg, rgba(42, 23, 38, 0.86) 0%, rgba(42, 23, 38, 0.62) 42%, rgba(42, 23, 38, 0) 75%);
 }
 
 .content { position: relative; }
@@ -36,6 +36,11 @@
   padding: 0 0.1em 0 0.3em;
 }
 
+.lead { max-width: 46ch; font-size: 18px; line-height: 1.6; color: rgba(255, 255, 255, 0.88); }
+.info { display: flex; flex-wrap: wrap; gap: 10px 22px; margin-top: 8px; padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.22); font-size: 15px; font-weight: 600; color: rgba(255, 255, 255, 0.9); }
+.info li { display: inline-flex; align-items: center; gap: 8px; }
+.info svg { width: 18px; height: 18px; color: var(--rose-on-dark); flex-shrink: 0; }
+
 .ctas { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; margin-top: 6px; }
 .arrow { width: 20px; height: 20px; transition: transform .2s ease; }
 .cta:hover .arrow { transform: translateX(3px); }
@@ -52,6 +57,7 @@
   .copy { gap: 14px; max-width: none; width: 100%; }
   .title { font-size: 40px; }
   .script { font-size: 1.25em; }
+  .lead, .info { display: none; }
   .ctas { align-self: stretch; margin-top: 6px; }
   .ctas .cta { display: none; }
   .ctas .secondary { flex: 1 1 100%; background: var(--primary); color: var(--white); box-shadow: var(--shadow-soft); }
