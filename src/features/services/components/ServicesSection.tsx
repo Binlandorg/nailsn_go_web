@@ -1,49 +1,38 @@
-import { Button } from '../../../shared/components/ui/Button'
-import { Reveal } from '../../../shared/components/ui/Reveal'
-import { ScriptText } from '../../../shared/components/ui/ScriptText'
-import { SectionHeading } from '../../../shared/components/ui/SectionHeading'
-import { Sparkle } from '../../../shared/components/decorations/Sparkle'
-import { ArrowRightIcon } from '../../../shared/components/icons/icons'
-import { services } from '../data/services'
-import { ServiceCard } from './ServiceCard'
+import { SectionHead } from '@/shared/components/ui/SectionHead'
+import { Button } from '@/shared/components/ui/Button'
+import { useReveal } from '@/shared/hooks/useReveal'
+import { categories, servicesPath } from '@/features/services/data/services'
+import { CategoryCard } from './CategoryCard'
 import styles from './ServicesSection.module.css'
 
+const staggerMs = 1300
+
 export function ServicesSection() {
+  const { ref, revealClass } = useReveal<HTMLDivElement>()
   return (
-    <section id="servicios" className={styles.section}>
-      <Sparkle size={28} tone="bubblegum" className={styles.sparkleA} />
-      <Sparkle size={18} delay={1200} className={styles.sparkleB} />
-
-      <div className="container">
-        <div className={styles.header}>
-          <SectionHeading
-            eyebrow="Nuestros servicios"
-            title={
-              <>
-                Servicios con <ScriptText>mucho glam</ScriptText>
-              </>
-            }
-          />
-          <Reveal delay={250} className={styles.aside}>
-            <p>
-              Cada set empieza con una conversación: tu estilo, tu ocasión y lo que te hace sentir tú. Nosotras
-              ponemos la técnica y el brillo.
-            </p>
-            <Button href="#contacto" variant="secondary" icon={<ArrowRightIcon />}>
-              Pedir mi cita
-            </Button>
-          </Reveal>
-        </div>
-
-        <ul className={styles.grid}>
-          {services.map((service, index) => (
-            <li key={service.id} className={styles.item}>
-              <Reveal delay={(index % 3) * 120}>
-                <ServiceCard service={service} />
-              </Reveal>
-            </li>
+    <section className="section" id="servicios" aria-labelledby="servicios-title">
+      <div className="wrap">
+        <SectionHead
+          eyebrow="Servicios"
+          titleId="servicios-title"
+          title={
+            <>
+              Todo lo que te <em>encanta</em>, en un solo lugar
+            </>
+          }
+          sub="Elige una categoría para ver sus servicios y reservar."
+        />
+        <div ref={ref} className={`${styles.tiles} ${revealClass}`}>
+          {categories.map((category, i) => (
+            <CategoryCard key={category.id} category={category} featured={i === 0} delayMs={i * staggerMs} />
           ))}
-        </ul>
+        </div>
+        <div className="center">
+          <Button to={servicesPath()} variant="outline">
+            Ver todos los servicios
+          </Button>
+          <p className="fine">Imágenes referenciales.</p>
+        </div>
       </div>
     </section>
   )

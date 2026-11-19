@@ -1,33 +1,14 @@
 .sparkle {
   position: absolute;
   pointer-events: none;
-  animation: twinkle 3.2s ease-in-out infinite;
+  animation: twinkle 4.5s ease-in-out infinite;
 }
 
-.fuchsia {
-  color: var(--color-fuchsia);
-}
-
-.bubblegum {
-  color: var(--color-bubblegum);
-}
-
-.white {
-  color: var(--color-white);
-}
-
-.nude {
-  color: var(--color-nude);
-}
+.gold { color: var(--gold); }
+.neon { color: var(--neon); }
+.white { color: var(--white); }
 
 @keyframes twinkle {
-  0%,
-  100% {
-    opacity: 1;
-    transform: scale(1) rotate(0deg);
-  }
-  50% {
-    opacity: 0.35;
-    transform: scale(0.55) rotate(45deg);
-  }
+  0%, 100% { opacity: 0.9; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.8); }
 }

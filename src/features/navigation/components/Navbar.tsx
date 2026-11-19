@@ -1,83 +1,55 @@
-import { useState } from 'react'
-import { Logo } from '../../../shared/components/brand/Logo'
-import { Button } from '../../../shared/components/ui/Button'
-import { CloseIcon, InstagramIcon, MenuIcon, WhatsappIcon } from '../../../shared/components/icons/icons'
-import { useLockBodyScroll } from '../../../shared/hooks/useLockBodyScroll'
-import { useScrolled } from '../../../shared/hooks/useScrolled'
-import { cn } from '../../../shared/utils/cn'
-import { site } from '../../../config/site'
-import { navLinks } from '../data/navLinks'
+import { useRef, useState } from 'react'
+import { site } from '@/config/site'
+import { Logo } from '@/shared/components/brand/Logo'
+import { InstagramIcon, MenuIcon } from '@/shared/components/icons/icons'
+import { Button } from '@/shared/components/ui/Button'
+import { Link } from 'react-router'
+import { navLinks } from '@/features/navigation/data/navLinks'
+import { AnnouncementBar } from './AnnouncementBar'
+import { MobileMenu } from './MobileMenu'
 import styles from './Navbar.module.css'
 
-export function Navbar() {
-  const scrolled = useScrolled()
-  const [menuOpen, setMenuOpen] = useState(false)
-  useLockBodyScroll(menuOpen)
+const menuId = 'menu-movil'
 
-  const closeMenu = () => setMenuOpen(false)
+export function Navbar() {
+  const [open, setOpen] = useState(false)
+  const toggleRef = useRef<HTMLButtonElement>(null)
 
   return (
-    <>
-      <header className={cn(styles.header, scrolled && styles.scrolled)}>
-        <nav className={cn('container', styles.nav)} aria-label="Principal">
+    <header className={styles.header}>
+      <AnnouncementBar />
+      <div className={`wrap ${styles.inner}`}>
+        <Link className={styles.logo} to="/" aria-label="Nails & Go Studio, inicio">
           <Logo />
-
-          <ul className={styles.links}>
-            {navLinks.map((link) => (
-              <li key={link.href}>
-                <a href={link.href} className={styles.link}>
-                  {link.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-
-          <div className={styles.actions}>
-            <a
-              href={site.instagram.url}
-              target="_blank"
-              rel="noreferrer"
-              className={styles.iconLink}
-              aria-label="Instagram de Nails & Go Studio"
-            >
-              <InstagramIcon />
-            </a>
-            <Button href="#contacto" className={styles.cta}>
-              Reservar cita
-            </Button>
-            <button
-              type="button"
-              className={styles.toggle}
-              onClick={() => setMenuOpen((open) => !open)}
-              aria-expanded={menuOpen}
-              aria-controls="mobile-menu"
-              aria-label={menuOpen ? 'Cerrar menú' : 'Abrir menú'}
-            >
-              {menuOpen ? <CloseIcon /> : <MenuIcon />}
-            </button>
-          </div>
-        </nav>
-      </header>
-
-      <div id="mobile-menu" className={cn(styles.mobileMenu, menuOpen && styles.mobileMenuOpen)} inert={!menuOpen}>
-        <ul className={styles.mobileLinks}>
-          {navLinks.map((link, index) => (
-            <li key={link.href} style={{ transitionDelay: menuOpen ? `${120 + index * 60}ms` : '0ms' }}>
-              <a href={link.href} onClick={closeMenu}>
-                {link.label}
-              </a>
-            </li>
+        </Link>
+        <nav className={styles.nav} aria-label="Principal">
+          {navLinks.map((link) => (
+            <Link key={link.to} to={link.to}>
+              {link.label}
+            </Link>
           ))}
-        </ul>
-        <div className={styles.mobileActions}>
-          <Button href="#contacto" size="lg" onClick={closeMenu}>
-            Reservar cita
+        </nav>
+        <div className={styles.actions}>
+          <a className={styles.ig} href={site.instagram.url} target="_blank" rel="noopener" aria-label={`Instagram ${site.instagram.handle}`}>
+            <InstagramIcon />
+          </a>
+          <Button href="#reservar" size="sm" className={styles.cta}>
+            Reservar
           </Button>
-          <Button href={site.whatsapp.url} variant="secondary" size="lg" icon={<WhatsappIcon />} target="_blank" rel="noreferrer">
-            WhatsApp
-          </Button>
+          <button
+            ref={toggleRef}
+            className={styles.menu}
+            type="button"
+            aria-label="Abrir menú"
+            aria-expanded={open}
+            aria-controls={menuId}
+            onClick={() => setOpen(true)}
+          >
+            <MenuIcon />
+          </button>
         </div>
       </div>
-    </>
+      <MobileMenu id={menuId} open={open} onClose={() => setOpen(false)} returnFocusRef={toggleRef} />
+    </header>
   )
 }

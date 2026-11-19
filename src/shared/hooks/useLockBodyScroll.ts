@@ -3,10 +3,10 @@ import { useEffect } from 'react'
 export function useLockBodyScroll(locked: boolean) {
   useEffect(() => {
     if (!locked) return
-    const previous = document.body.style.overflow
+    const { overflow } = document.body.style
     document.body.style.overflow = 'hidden'
     return () => {
-      document.body.style.overflow = previous
+      document.body.style.overflow = overflow
     }
   }, [locked])
 }

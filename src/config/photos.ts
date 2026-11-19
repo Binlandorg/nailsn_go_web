@@ -1,9 +1,19 @@
-// Fotografías de referencia (Unsplash) mientras llegan las del Instagram del estudio.
-// Para usar fotos propias: guárdalas en src/assets e impórtalas aquí con el mismo nombre.
+import fachada from '@/assets/photos/fachada.webp'
+import interior from '@/assets/photos/interior.webp'
+import interiorMural from '@/assets/photos/interior-mural.png'
+import interiorSillones from '@/assets/photos/interior-sillones.png'
+import recepcion from '@/assets/photos/recepcion.webp'
+
+export const photos = {
+  fachada: { src: fachada, width: 1024, height: 1007 },
+  interior: { src: interior, width: 473, height: 1020 },
+  recepcion: { src: recepcion, width: 765, height: 1020 },
+} as const
+
 const unsplash = (id: string, width = 900) =>
   `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${width}&q=80`
 
-export const photos = {
+export const referencePhotos = {
   pinkNails: unsplash('photo-1604902396830-aca29e19b067', 1100),
   loveNails: unsplash('photo-1519014816548-bf5fe059798b'),
   nudeManicure: unsplash('photo-1610992015732-2449b76344bc'),
@@ -17,4 +27,42 @@ export const photos = {
   polishBottles: unsplash('photo-1599948128020-9a44505b0d1b'),
   pinkFlatlay: unsplash('photo-1631214524020-7e18db9a8f92'),
   brushes: unsplash('photo-1516975080664-ed2fc6a32937'),
+  spaTowels: unsplash('photo-1540555700478-4be289fbecef'),
+  browThreading: unsplash('photo-1519415387722-a1c3bbef716c'),
+  browCare: unsplash('photo-1512290923902-8a9f81dc236c'),
+  lashLook: unsplash('photo-1487412947147-5cebf100ffc2'),
+  facialClay: unsplash('photo-1570172619644-dfd03ed5d881'),
+  facialMask: unsplash('photo-1616394584738-fc6e612e71b9'),
+  facialCare: unsplash('photo-1552693673-1bf958298935'),
+  skinCare: unsplash('photo-1519824145371-296894a0daa9'),
+  skinOil: unsplash('photo-1544161515-4ab6ce6db874'),
 } as const
+
+export interface HeroSlide {
+  src: string
+  alt: string
+  position: string
+}
+
+export const heroSlides: HeroSlide[] = [
+  {
+    src: recepcion,
+    alt: 'Recepción de Nails & Go Studio con el letrero circular en rosa neón sobre el jardín vertical',
+    position: '62% 28%',
+  },
+  {
+    src: interior,
+    alt: 'Zona de pedicure spa de Nails & Go Studio con sillones de terciopelo rosa',
+    position: '60% 40%',
+  },
+  {
+    src: interiorMural,
+    alt: 'Mural Good Nails en la pared rosa del estudio, junto a un sillón de terciopelo',
+    position: '45% 35%',
+  },
+  {
+    src: interiorSillones,
+    alt: 'Sillones de terciopelo y carrito de atención en la zona de pedicure',
+    position: '40% 30%',
+  },
+]

@@ -1,29 +1,23 @@
-import type { AnchorHTMLAttributes, ReactNode } from 'react'
-import { cn } from '../../utils/cn'
-import styles from './Button.module.css'
+import type { AnchorHTMLAttributes } from 'react'
+import { Link } from 'react-router'
+import { buttonClass, type ButtonStyleProps } from '@/shared/utils/buttonClass'
 
-type ButtonVariant = 'primary' | 'secondary' | 'light' | 'outlineLight'
-type ButtonSize = 'md' | 'lg'
+type AnchorProps = Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'href'> & ButtonStyleProps
 
-interface ButtonProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
-  href: string
-  variant?: ButtonVariant
-  size?: ButtonSize
-  icon?: ReactNode
-}
+type ButtonProps = AnchorProps & ({ href: string; to?: never } | { to: string; href?: never })
 
-export function Button({
-  variant = 'primary',
-  size = 'md',
-  icon,
-  className,
-  children,
-  ...props
-}: ButtonProps) {
+export function Button({ variant, size, block, className, children, to, href, ...props }: ButtonProps) {
+  const classes = buttonClass({ variant, size, block, className })
+  if (to !== undefined) {
+    return (
+      <Link className={classes} to={to} {...props}>
+        {children}
+      </Link>
+    )
+  }
   return (
-    <a className={cn(styles.button, styles[variant], styles[size], className)} {...props}>
-      <span className={styles.label}>{children}</span>
-      {icon && <span className={styles.icon}>{icon}</span>}
+    <a className={classes} href={href} {...props}>
+      {children}
     </a>
   )
 }

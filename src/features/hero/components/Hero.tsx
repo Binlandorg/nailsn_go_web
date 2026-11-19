@@ -1,55 +1,53 @@
-import { Button } from '../../../shared/components/ui/Button'
-import { ScriptText } from '../../../shared/components/ui/ScriptText'
-import { ArrowRightIcon, SparkleIcon } from '../../../shared/components/icons/icons'
-import { HeroStats } from './HeroStats'
-import { HeroVisual } from './HeroVisual'
+import { site } from '@/config/site'
+import { ArrowRightIcon, ClockIcon, MapPinIcon } from '@/shared/components/icons/icons'
+import { Button } from '@/shared/components/ui/Button'
+import { HeroSlideshow } from './HeroSlideshow'
 import styles from './Hero.module.css'
 
 export function Hero() {
   return (
-    <section id="inicio" className={styles.hero}>
-      <div className={styles.blobPink} aria-hidden="true" />
-      <div className={styles.blobNude} aria-hidden="true" />
-
-      <div className={`container ${styles.grid}`}>
+    <section className={styles.hero} id="inicio">
+      <div className={styles.media}>
+        <HeroSlideshow />
+        <div className={styles.veil} aria-hidden="true" />
+      </div>
+      <div className={`wrap ${styles.content}`}>
         <div className={styles.copy}>
-          <p className={styles.badge}>
-            <SparkleIcon className={styles.badgeIcon} />
-            Nail studio · Solo con cita
-          </p>
-
+          <p className={`eyebrow ${styles.kicker}`}>Salón spa · {site.area}</p>
           <h1 className={styles.title}>
+            <span className={styles.line}>El salón más</span>
             <span className={styles.line}>
-              <span>Uñas que</span>
+              <span className={styles.script}>aesthetic</span>
             </span>
-            <span className={styles.line}>
-              <ScriptText className={styles.script}>enamoran,</ScriptText>
-            </span>
-            <span className={styles.line}>
-              <span>
-                estilo que <mark className={styles.highlight}>brilla.</mark>
-              </span>
-            </span>
+            <span className={styles.line}>del Cono Norte.</span>
           </h1>
-
-          <p className={styles.lead}>
-            Manicure, pedicure y nail art con mucho glam. Diseños hechos a tu medida, en un espacio
-            pensado para que te consientas sin prisa — y salgas lista para tu próximo post.
-          </p>
-
+          <p className={styles.lead}>Uñas, pedicure spa, pestañas, cejas, faciales y depilación en un espacio pensado para que salgas sintiéndote increíble.</p>
           <div className={styles.ctas}>
-            <Button href="#contacto" size="lg" icon={<ArrowRightIcon />}>
-              Reserva tu cita
+            <Button href="#reservar" className={styles.cta}>
+              Reservar por WhatsApp
+              <ArrowRightIcon className={styles.arrow} />
             </Button>
-            <Button href="#servicios" size="lg" variant="secondary">
+            <Button href="#servicios" variant="outline" className={styles.secondary}>
               Ver servicios
             </Button>
           </div>
-
-          <HeroStats />
+          {(site.scheduleShort || site.addressShort) && (
+            <ul className={styles.info}>
+              {site.scheduleShort && (
+                <li>
+                  <ClockIcon />
+                  {site.scheduleShort}
+                </li>
+              )}
+              {site.addressShort && (
+                <li>
+                  <MapPinIcon />
+                  {site.addressShort}
+                </li>
+              )}
+            </ul>
+          )}
         </div>
-
-        <HeroVisual />
       </div>
     </section>
   )

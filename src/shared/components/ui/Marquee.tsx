@@ -1,24 +1,16 @@
 import type { CSSProperties, ReactNode } from 'react'
-import { cn } from '../../utils/cn'
+import { cn } from '@/shared/utils/cn'
 import styles from './Marquee.module.css'
 
 interface MarqueeProps {
   children: ReactNode
-  /** Segundos que tarda en recorrer una vuelta completa. */
   duration?: number
   reverse?: boolean
   pauseOnHover?: boolean
   className?: string
 }
 
-/** Cinta infinita: el contenido se duplica para que el bucle no tenga cortes. */
-export function Marquee({
-  children,
-  duration = 30,
-  reverse = false,
-  pauseOnHover = false,
-  className,
-}: MarqueeProps) {
+export function Marquee({ children, duration = 30, reverse = false, pauseOnHover = false, className }: MarqueeProps) {
   return (
     <div
       className={cn(styles.marquee, pauseOnHover && styles.pausable, className)}

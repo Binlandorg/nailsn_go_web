@@ -1,18 +1,17 @@
 import type { CSSProperties } from 'react'
-import { SparkleIcon } from '../icons/icons'
-import { cn } from '../../utils/cn'
+import { SparkleIcon } from '@/shared/components/icons/icons'
+import { cn } from '@/shared/utils/cn'
 import styles from './Sparkle.module.css'
 
 interface SparkleProps {
   size?: number
   delay?: number
-  tone?: 'fuchsia' | 'bubblegum' | 'white' | 'nude'
+  tone?: 'gold' | 'neon' | 'white'
   className?: string
   style?: CSSProperties
 }
 
-/** Destello decorativo que titila. Se posiciona desde fuera vía className/style. */
-export function Sparkle({ size = 20, delay = 0, tone = 'fuchsia', className, style }: SparkleProps) {
+export function Sparkle({ size = 20, delay = 0, tone = 'gold', className, style }: SparkleProps) {
   return (
     <SparkleIcon
       className={cn(styles.sparkle, styles[tone], className)}

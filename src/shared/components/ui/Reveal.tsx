@@ -1,27 +1,16 @@
-import type { CSSProperties, ReactNode } from 'react'
-import { useInView } from '../../hooks/useInView'
-import { cn } from '../../utils/cn'
-import styles from './Reveal.module.css'
-
-type RevealVariant = 'up' | 'left' | 'right' | 'zoom' | 'fade' | 'tilt'
+import type { ReactNode } from 'react'
+import { cn } from '@/shared/utils/cn'
+import { useReveal } from '@/shared/hooks/useReveal'
 
 interface RevealProps {
   children: ReactNode
-  variant?: RevealVariant
-  delay?: number
   className?: string
 }
 
-/** Anima su contenido la primera vez que entra en pantalla. */
-export function Reveal({ children, variant = 'up', delay = 0, className }: RevealProps) {
-  const { ref, inView } = useInView<HTMLDivElement>()
-
+export function Reveal({ children, className }: RevealProps) {
+  const { ref, revealClass } = useReveal<HTMLDivElement>()
   return (
-    <div
-      ref={ref}
-      className={cn(styles.reveal, styles[variant], inView && styles.visible, className)}
-      style={{ '--reveal-delay': `${delay}ms` } as CSSProperties}
-    >
+    <div ref={ref} className={cn(revealClass, className)}>
       {children}
     </div>
   )
