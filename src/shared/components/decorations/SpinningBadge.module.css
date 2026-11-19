@@ -5,8 +5,9 @@
   width: 128px;
   aspect-ratio: 1;
   border-radius: 50%;
-  background: var(--color-fuchsia);
-  color: var(--color-white);
+  background: var(--color-plum);
+  color: var(--color-gold-light);
+  border: 1px solid var(--color-gold);
   box-shadow: var(--shadow-soft);
   transition: transform 0.45s var(--ease-bounce);
 }
@@ -39,8 +40,8 @@
   width: 42px;
   height: 42px;
   border-radius: 50%;
-  background: var(--color-white);
-  color: var(--color-fuchsia);
+  background: var(--gradient-gold);
+  color: var(--color-plum);
   animation: beat 1.8s ease-in-out infinite;
 }
 

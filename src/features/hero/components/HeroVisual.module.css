@@ -10,7 +10,7 @@
   position: absolute;
   inset: 0;
   border-radius: var(--radius-arch);
-  background: var(--gradient-glam);
+  background: var(--gradient-rose);
   transform: rotate(7deg) translate(26px, 8px);
   animation:
     backdropIn 1.2s var(--ease-out) 0.2s both,
@@ -92,7 +92,7 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: var(--color-fuchsia);
+  background: var(--color-accent);
   animation: pulse 1.8s ease-out infinite;
 }
 
@@ -100,7 +100,7 @@
   font-family: var(--font-script);
   font-size: 2.2rem;
   line-height: 1.1;
-  color: var(--color-fuchsia);
+  color: var(--color-mauve);
   text-transform: capitalize;
 }
 
@@ -127,7 +127,7 @@
 .chip svg {
   width: 18px;
   height: 18px;
-  color: var(--color-bubblegum);
+  color: var(--color-gold-light);
 }
 
 .badge {
@@ -201,10 +201,10 @@
 
 @keyframes pulse {
   0% {
-    box-shadow: 0 0 0 0 rgb(226 24 127 / 0.6);
+    box-shadow: 0 0 0 0 rgb(224 33 138 / 0.6);
   }
   100% {
-    box-shadow: 0 0 0 10px rgb(226 24 127 / 0);
+    box-shadow: 0 0 0 10px rgb(224 33 138 / 0);
   }
 }
 

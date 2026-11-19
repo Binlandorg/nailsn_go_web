@@ -36,7 +36,6 @@
     grid-auto-rows: 44vw;
   }
 
-  /* cierra la cuadrícula sin huecos en 2 columnas */
   .grid > li:last-child {
     grid-column: span 2;
   }

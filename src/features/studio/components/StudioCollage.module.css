@@ -48,8 +48,10 @@
   gap: 2px;
   padding: 18px 20px;
   border-radius: var(--radius-md);
-  background: var(--color-fuchsia);
+  background: var(--color-plum);
   color: var(--color-white);
+  outline: 1px solid var(--color-gold);
+  outline-offset: -8px;
   text-align: center;
   box-shadow: var(--shadow-soft);
 }

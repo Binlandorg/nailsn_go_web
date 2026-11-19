@@ -12,7 +12,6 @@ interface RevealProps {
   className?: string
 }
 
-/** Anima su contenido la primera vez que entra en pantalla. */
 export function Reveal({ children, variant = 'up', delay = 0, className }: RevealProps) {
   const { ref, inView } = useInView<HTMLDivElement>()
 

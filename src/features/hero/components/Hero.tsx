@@ -1,3 +1,4 @@
+import { bookingUrl, site } from '../../../config/site'
 import { Button } from '../../../shared/components/ui/Button'
 import { ScriptText } from '../../../shared/components/ui/ScriptText'
 import { ArrowRightIcon, SparkleIcon } from '../../../shared/components/icons/icons'
@@ -15,34 +16,34 @@ export function Hero() {
         <div className={styles.copy}>
           <p className={styles.badge}>
             <SparkleIcon className={styles.badgeIcon} />
-            Nail studio · Solo con cita
+            Salón spa · {site.address.district}, {site.address.region}
           </p>
 
           <h1 className={styles.title}>
             <span className={styles.line}>
-              <span>Uñas que</span>
+              <span>El salón</span>
             </span>
             <span className={styles.line}>
-              <ScriptText className={styles.script}>enamoran,</ScriptText>
+              <ScriptText className={styles.script}>más aesthetic</ScriptText>
             </span>
             <span className={styles.line}>
               <span>
-                estilo que <mark className={styles.highlight}>brilla.</mark>
+                del <mark className={styles.highlight}>Cono Norte.</mark>
               </span>
             </span>
           </h1>
 
           <p className={styles.lead}>
-            Manicure, pedicure y nail art con mucho glam. Diseños hechos a tu medida, en un espacio
-            pensado para que te consientas sin prisa — y salgas lista para tu próximo post.
+            Expertas en uñas, cejas y pestañas. También micropigmentación, faciales y depilación, con promociones
+            nuevas cada mes. Consiéntete al máximo.
           </p>
 
           <div className={styles.ctas}>
-            <Button href="#contacto" size="lg" icon={<ArrowRightIcon />}>
-              Reserva tu cita
+            <Button href={bookingUrl()} target="_blank" rel="noreferrer" size="lg" icon={<ArrowRightIcon />}>
+              Agenda tu cita
             </Button>
             <Button href="#servicios" size="lg" variant="secondary">
-              Ver servicios
+              Ver promociones
             </Button>
           </div>
 

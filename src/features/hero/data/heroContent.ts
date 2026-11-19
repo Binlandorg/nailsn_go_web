@@ -1,8 +1,9 @@
-// TODO: confirmar cifras reales con el estudio.
+import { site } from '../../../config/site'
+
 export const heroStats = [
-  { value: '+500', label: 'clientas felices' },
-  { value: '+40', label: 'diseños al mes' },
-  { value: '5★', label: 'en reseñas' },
+  { value: site.instagram.followers, label: 'seguidores en Instagram' },
+  { value: 'L–D', label: 'atención toda la semana' },
+  { value: '3 en 1', label: 'uñas, mirada y rostro' },
 ]
 
-export const currentMonth = new Intl.DateTimeFormat('es', { month: 'long' }).format(new Date())
+export const currentMonth = new Intl.DateTimeFormat('es-PE', { month: 'long' }).format(new Date())

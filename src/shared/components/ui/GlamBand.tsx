@@ -3,7 +3,7 @@ import { SparkleIcon } from '../icons/icons'
 import { Marquee } from './Marquee'
 import styles from './GlamBand.module.css'
 
-const words = ['Manicure', 'Nail art', 'Pedicure spa', 'Gel & semipermanente', 'Acrílicas', 'Glam total']
+const words = ['Uñas', 'Cejas', 'Pestañas', 'Micropigmentación', 'Faciales', 'Depilación']
 
 function BandWords() {
   return words.map((word) => (
@@ -14,7 +14,6 @@ function BandWords() {
   ))
 }
 
-/** Dos cintas cruzadas que separan el hero del resto de la página. */
 export function GlamBand() {
   return (
     <div className={styles.band} aria-hidden="true">

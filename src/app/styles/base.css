@@ -59,14 +59,14 @@ button {
 }
 
 :focus-visible {
-  outline: 3px solid var(--color-fuchsia);
+  outline: 3px solid var(--color-accent);
   outline-offset: 3px;
   border-radius: 8px;
 }
 
 ::selection {
-  background: var(--color-bubblegum);
-  color: var(--color-white);
+  background: var(--color-rose);
+  color: var(--color-plum);
 }
 
 .container {

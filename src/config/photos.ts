@@ -1,5 +1,3 @@
-// Fotografías de referencia (Unsplash) mientras llegan las del Instagram del estudio.
-// Para usar fotos propias: guárdalas en src/assets e impórtalas aquí con el mismo nombre.
 const unsplash = (id: string, width = 900) =>
   `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${width}&q=80`
 

@@ -13,13 +13,12 @@
   padding: clamp(36px, 6vw, 80px);
   border-radius: var(--radius-xl);
   background:
-    radial-gradient(70% 90% at 100% 100%, rgb(255 141 193 / 0.9), transparent 70%),
-    linear-gradient(135deg, var(--color-fuchsia-deep) 0%, var(--color-fuchsia) 60%);
+    radial-gradient(70% 90% at 100% 100%, rgb(139 90 124 / 0.75), transparent 70%),
+    var(--gradient-plum);
   color: var(--color-white);
-  box-shadow: 0 40px 80px -40px rgb(184 15 102 / 0.7);
+  box-shadow: 0 40px 80px -40px rgb(61 26 54 / 0.7);
 }
 
-/* aro decorativo */
 .card::before {
   content: '';
   position: absolute;
@@ -28,7 +27,7 @@
   right: -200px;
   top: -300px;
   border-radius: 50%;
-  border: 2px dashed rgb(255 255 255 / 0.25);
+  border: 1px dashed rgb(201 161 74 / 0.45);
   animation: spin 50s linear infinite;
 }
 
@@ -42,7 +41,9 @@
 .eyebrow {
   padding: 8px 16px;
   border-radius: var(--radius-pill);
-  background: rgb(255 255 255 / 0.18);
+  background: rgb(255 255 255 / 0.1);
+  box-shadow: inset 0 0 0 1px rgb(201 161 74 / 0.6);
+  color: var(--color-gold-light);
   font-size: 0.78rem;
   font-weight: 700;
   letter-spacing: 0.18em;
@@ -85,7 +86,7 @@
   width: 18px;
   height: 18px;
   flex-shrink: 0;
-  color: var(--color-bubblegum-soft);
+  color: var(--color-gold);
 }
 
 .info a {
@@ -107,7 +108,7 @@
   position: absolute;
   margin: 0;
   overflow: hidden;
-  border: 6px solid rgb(255 255 255 / 0.95);
+  border: 4px solid var(--color-gold-light);
   box-shadow: 0 30px 60px -30px rgb(61 26 54 / 0.7);
 }
 
@@ -139,7 +140,6 @@
   position: absolute;
   top: -4%;
   right: 2%;
-  background: var(--color-plum);
 }
 
 .sparkleA {

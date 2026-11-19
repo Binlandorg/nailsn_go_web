@@ -1,11 +1,11 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Logo } from '../../../shared/components/brand/Logo'
 import { Button } from '../../../shared/components/ui/Button'
 import { CloseIcon, InstagramIcon, MenuIcon, WhatsappIcon } from '../../../shared/components/icons/icons'
 import { useLockBodyScroll } from '../../../shared/hooks/useLockBodyScroll'
 import { useScrolled } from '../../../shared/hooks/useScrolled'
 import { cn } from '../../../shared/utils/cn'
-import { site } from '../../../config/site'
+import { bookingChannel, bookingUrl, hasWhatsapp, site } from '../../../config/site'
 import { navLinks } from '../data/navLinks'
 import styles from './Navbar.module.css'
 
@@ -15,6 +15,15 @@ export function Navbar() {
   useLockBodyScroll(menuOpen)
 
   const closeMenu = () => setMenuOpen(false)
+
+  useEffect(() => {
+    if (!menuOpen) return
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setMenuOpen(false)
+    }
+    window.addEventListener('keydown', onKeyDown)
+    return () => window.removeEventListener('keydown', onKeyDown)
+  }, [menuOpen])
 
   return (
     <>
@@ -42,8 +51,8 @@ export function Navbar() {
             >
               <InstagramIcon />
             </a>
-            <Button href="#contacto" className={styles.cta}>
-              Reservar cita
+            <Button href={bookingUrl()} target="_blank" rel="noreferrer" className={styles.cta}>
+              Agenda tu cita
             </Button>
             <button
               type="button"
@@ -70,11 +79,15 @@ export function Navbar() {
           ))}
         </ul>
         <div className={styles.mobileActions}>
-          <Button href="#contacto" size="lg" onClick={closeMenu}>
-            Reservar cita
-          </Button>
-          <Button href={site.whatsapp.url} variant="secondary" size="lg" icon={<WhatsappIcon />} target="_blank" rel="noreferrer">
-            WhatsApp
+          <Button
+            href={bookingUrl()}
+            size="lg"
+            icon={hasWhatsapp ? <WhatsappIcon /> : <InstagramIcon />}
+            target="_blank"
+            rel="noreferrer"
+            onClick={closeMenu}
+          >
+            Agendar por {bookingChannel}
           </Button>
         </div>
       </div>

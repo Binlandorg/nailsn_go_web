@@ -2,7 +2,7 @@
   position: relative;
   padding-block: var(--section-y);
   background:
-    radial-gradient(60% 50% at 100% 0%, rgb(255 184 214 / 0.35), transparent 70%),
+    radial-gradient(60% 50% at 100% 0%, rgb(241 203 218 / 0.35), transparent 70%),
     var(--color-cream);
   border-radius: var(--radius-xl) var(--radius-xl) 0 0;
 }

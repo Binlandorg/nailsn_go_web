@@ -9,7 +9,7 @@
   width: 22px;
   height: 22px;
   align-self: center;
-  fill: var(--color-fuchsia);
+  fill: var(--color-mauve);
   transition: transform 0.5s var(--ease-bounce);
 }
 
@@ -28,7 +28,7 @@
   font-family: var(--font-script);
   font-size: 1.7rem;
   line-height: 0;
-  color: var(--color-fuchsia);
+  color: var(--color-mauve);
   transform: rotate(-6deg);
 }
 
@@ -42,6 +42,6 @@
 
 .light .script,
 .light .brush {
-  color: var(--color-bubblegum);
-  fill: var(--color-bubblegum);
+  color: var(--color-gold-light);
+  fill: var(--color-gold-light);
 }
