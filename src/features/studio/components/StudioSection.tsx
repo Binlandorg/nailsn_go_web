@@ -1,6 +1,5 @@
 import { photos } from '@/config/photos'
 import { site } from '@/config/site'
-import { ShieldIcon } from '@/shared/components/icons/icons'
 import { Badge } from '@/shared/components/ui/Badge'
 import { SectionHead } from '@/shared/components/ui/SectionHead'
 import { useReveal } from '@/shared/hooks/useReveal'
@@ -13,7 +12,7 @@ const clips = ['Video vertical del estudio', 'Video vertical de un servicio']
 export function StudioSection() {
   const { ref: photoRef, revealClass: photoReveal } = useReveal<HTMLElement>()
   const { ref: listRef, revealClass: listReveal } = useReveal<HTMLUListElement>()
-  const { ref: hygieneRef, revealClass: hygieneReveal } = useReveal<HTMLDivElement>()
+  const { ref: clipsRef, revealClass: clipsReveal } = useReveal<HTMLDivElement>()
 
   return (
     <section className="section" id="estudio" aria-labelledby="estudio-title">
@@ -40,27 +39,24 @@ export function StudioSection() {
             <figcaption>{site.tagline}</figcaption>
           </figure>
           <ul ref={listRef} className={`${styles.highlights} ${listReveal}`}>
-            {highlights.map(({ title, description, icon: Icon }) => (
-              <li key={title} className="card">
-                <span className={styles.hlIcon}>
+            {highlights.map(({ title, description, icon: Icon, pending }) => (
+              <li key={title} className={`card ${styles.item}`}>
+                <span className={pending ? `${styles.hlIcon} ${styles.stroke}` : styles.hlIcon}>
                   <Icon />
                 </span>
-                <h3>{title}</h3>
+                <h3>
+                  {title}
+                  {pending ? <Badge /> : null}
+                </h3>
                 <p>{description}</p>
               </li>
             ))}
           </ul>
         </div>
-        <div className={styles.extra}>
+        <div ref={clipsRef} className={`${styles.extra} ${clipsReveal}`}>
           {clips.map((caption) => (
             <Clip key={caption} caption={caption} />
           ))}
-          <div ref={hygieneRef} className={`card ${styles.hygiene} ${hygieneReveal}`}>
-            <ShieldIcon />
-            <h3>Higiene y esterilización</h3>
-            <p>Aquí contaremos cómo limpiamos y esterilizamos las herramientas y qué material usamos en cada servicio.</p>
-            <Badge />
-          </div>
         </div>
       </div>
     </section>

@@ -1,8 +1,6 @@
 import { site } from '@/config/site'
 import { Logo } from '@/shared/components/brand/Logo'
-import { ClockIcon, InstagramIcon, TikTokIcon, WhatsAppIcon } from '@/shared/components/icons/icons'
-import { buttonClass } from '@/shared/utils/buttonClass'
-import { whatsappLink } from '@/shared/utils/whatsapp'
+import { InstagramIcon, TikTokIcon } from '@/shared/components/icons/icons'
 import { Link } from 'react-router'
 import { navLinks } from '@/features/navigation/data/navLinks'
 import styles from './Footer.module.css'
@@ -16,21 +14,6 @@ export function Footer() {
             <Logo tone="light" placement="footer" />
           </Link>
           <p className={styles.tag}>{site.tagline}</p>
-          <div className={styles.quick}>
-            <a className={buttonClass({ block: true })} href={whatsappLink()} target="_blank" rel="noopener">
-              <WhatsAppIcon className={styles.waIcon} />
-              Escríbenos por WhatsApp
-            </a>
-            {site.mapsUrl && (
-              <a className={buttonClass({ variant: 'outline', block: true, className: styles.onDark })} href={site.mapsUrl} target="_blank" rel="noopener">
-                Cómo llegar
-              </a>
-            )}
-            <p className={styles.hours}>
-              <ClockIcon />
-              {site.schedule ?? site.pending}
-            </p>
-          </div>
           <div className={styles.social}>
             <a className={styles.ig} href={site.instagram.url} target="_blank" rel="noopener" aria-label={`Instagram ${site.instagram.handle}`}>
               <InstagramIcon />
@@ -72,7 +55,15 @@ export function Footer() {
                 TikTok {site.tiktok.handle}
               </a>
             </li>
-            <li>{site.address ?? site.pending}</li>
+            <li>
+              {site.address && site.mapsUrl ? (
+                <a href={site.mapsUrl} target="_blank" rel="noopener">
+                  {site.address}
+                </a>
+              ) : (
+                site.address ?? site.pending
+              )}
+            </li>
           </ul>
         </div>
       </div>

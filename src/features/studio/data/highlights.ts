@@ -1,10 +1,11 @@
 import type { ComponentType, SVGProps } from 'react'
-import { BrushIcon, GemIcon, HeartIcon, MapPinIcon } from '@/shared/components/icons/icons'
+import { BrushIcon, GemIcon, HeartIcon, ShieldIcon } from '@/shared/components/icons/icons'
 
 export interface Highlight {
   title: string
   description: string
   icon: ComponentType<SVGProps<SVGSVGElement>>
+  pending?: boolean
 }
 
 export const highlights: Highlight[] = [
@@ -24,8 +25,9 @@ export const highlights: Highlight[] = [
     icon: BrushIcon,
   },
   {
-    title: 'En el Cono Norte',
-    description: 'Retablo 729, Comas. Atención de lunes a domingo.',
-    icon: MapPinIcon,
+    title: 'Higiene y esterilización',
+    description: 'Cómo limpiamos y esterilizamos las herramientas en cada servicio.',
+    icon: ShieldIcon,
+    pending: true,
   },
 ]

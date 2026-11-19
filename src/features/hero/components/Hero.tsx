@@ -1,21 +1,16 @@
 import { site } from '@/config/site'
-import { Sparkle } from '@/shared/components/decorations/Sparkle'
-import { ArrowRightIcon, ClockIcon, MapPinIcon } from '@/shared/components/icons/icons'
+import { ArrowRightIcon } from '@/shared/components/icons/icons'
 import { Button } from '@/shared/components/ui/Button'
-import { Link } from 'react-router'
-import { servicesPath } from '@/features/services/data/services'
-import { quickLinks } from '@/features/hero/data/quickLinks'
 import { HeroSlideshow } from './HeroSlideshow'
 import styles from './Hero.module.css'
 
 export function Hero() {
   return (
     <section className={styles.hero} id="inicio">
-      <HeroSlideshow />
-      <div className={styles.veil} aria-hidden="true" />
-      <Sparkle size={30} className={styles.sparkleA} />
-      <Sparkle size={18} tone="white" delay={900} className={styles.sparkleB} />
-      <div className={`wrap ${styles.content}`}>
+      <div className={`wrap ${styles.grid}`}>
+        <div className={styles.card}>
+          <HeroSlideshow />
+        </div>
         <div className={styles.copy}>
           <p className={`eyebrow ${styles.kicker}`}>Salón spa · {site.area}</p>
           <h1 className={styles.title}>
@@ -26,27 +21,6 @@ export function Hero() {
             <span className={styles.line}>del Cono Norte.</span>
           </h1>
           <p className={styles.lead}>Uñas, pedicure spa, pestañas, cejas, faciales y depilación en un espacio pensado para que salgas sintiéndote increíble.</p>
-          <nav className={styles.quick} aria-label="Accesos rápidos a servicios">
-            {quickLinks.map((link) => (
-              <Link key={link.id} className={styles.quickLink} to={servicesPath(link.id)}>
-                {link.label}
-              </Link>
-            ))}
-          </nav>
-          <ul className={styles.facts}>
-            {site.scheduleShort && (
-              <li>
-                <ClockIcon />
-                {site.scheduleShort}
-              </li>
-            )}
-            {site.addressShort && (
-              <li>
-                <MapPinIcon />
-                {site.addressShort}
-              </li>
-            )}
-          </ul>
           <div className={styles.ctas}>
             <Button href="#reservar" className={styles.cta}>
               Reservar por WhatsApp

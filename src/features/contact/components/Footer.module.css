@@ -19,8 +19,6 @@
 .ig svg { width: 20px; height: 20px; }
 .ig:hover { background: rgba(255, 255, 255, 0.08); }
 
-.quick { display: none; }
-
 .col h2 {
   font: 700 12px var(--sans); letter-spacing: 0.24em; text-transform: uppercase;
   color: var(--rose-on-dark); margin-bottom: 14px;
@@ -55,19 +53,18 @@
 }
 
 @media (max-width: 767px) {
-  .footer { padding: 36px 0 20px; }
-  .inner { display: block; }
-  .brand { gap: 16px; justify-items: center; text-align: center; }
+  .footer { padding: 40px 0 24px; }
+  .inner { grid-template-columns: 1fr; gap: 0; }
+  .brand { gap: 14px; padding-bottom: 24px; }
   .tag { font-size: 18px; }
-  .quick { display: grid; gap: 10px; width: 100%; }
-  .waIcon { width: 22px; height: 22px; fill: currentColor; }
-  .onDark { color: var(--white); box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.6); }
-  .onDark:hover { color: var(--white); background: rgba(255, 255, 255, 0.08); }
-  .hours { display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 4px; font-size: 14px; color: rgba(255, 255, 255, 0.82); }
-  .hours svg { width: 18px; height: 18px; color: var(--rose-on-dark); flex-shrink: 0; }
-  .social { justify-content: center; width: 100%; }
+  .social { order: 3; }
   .ig { width: 48px; height: 48px; }
-  .col { display: none; }
+  .col { padding: 20px 0; border-top: 1px solid rgba(255, 255, 255, 0.12); }
+  .col h2 { margin-bottom: 10px; }
+  .col ul { gap: 4px; }
+  .col a { display: inline-flex; align-items: center; min-height: 40px; }
+  .col p, .col li { font-size: 16px; }
+  .col a { font-size: 16px; }
   .watermark { display: none; }
-  .bottom { margin-top: 28px; font-size: 14px; flex-direction: column; align-items: center; text-align: center; gap: 4px; }
+  .bottom { margin-top: 8px; font-size: 13px; flex-direction: column; gap: 4px; }
 }
