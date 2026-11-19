@@ -1,31 +1,29 @@
-import { photos } from '../../../config/photos'
-import { site } from '../../../config/site'
-import { PinIcon } from '../../../shared/components/icons/icons'
-import { SectionHead } from '../../../shared/components/ui/SectionHead'
-import { useReveal } from '../../../shared/components/ui/useReveal'
+import { photos } from '@/config/photos'
+import { site } from '@/config/site'
+import { PinIcon } from '@/shared/components/icons/icons'
+import { SectionHead } from '@/shared/components/ui/SectionHead'
+import { useReveal } from '@/shared/hooks/useReveal'
+import { Pending } from './Pending'
 import styles from './LocationSection.module.css'
-
-function Pending({ value }: { value: string | null }) {
-  return value ? <p>{value}</p> : <p className={styles.pending}>{site.pending}</p>
-}
 
 export function LocationSection() {
   const { ref: mapRef, revealClass: mapReveal } = useReveal<HTMLDivElement>()
   const { ref: photoRef, revealClass: photoReveal } = useReveal<HTMLElement>()
 
   return (
-    <section className={`section ${styles.contact}`} id="ubicacion" aria-labelledby="ubicacion-title">
+    <section className="section" id="ubicacion" aria-labelledby="ubicacion-title">
       <div className="wrap">
         <SectionHead
           eyebrow="Ubicación y horario"
           titleId="ubicacion-title"
+          sub="Estamos en Comas, Lima Norte. Escríbenos antes de venir."
           title={
             <>
               Te <em>esperamos</em>
             </>
           }
         />
-        <ul className={styles.info}>
+        <ul className={`card ${styles.info}`}>
           <li>
             <h3>WhatsApp</h3>
             <a href={`https://wa.me/${site.whatsapp.number}`} target="_blank" rel="noopener">
@@ -41,6 +39,11 @@ export function LocationSection() {
           <li>
             <h3>Dirección</h3>
             <Pending value={site.address} />
+            {site.mapsUrl && (
+              <a className={styles.directions} href={site.mapsUrl} target="_blank" rel="noopener">
+                Cómo llegar
+              </a>
+            )}
           </li>
           <li>
             <h3>Horario</h3>
@@ -50,7 +53,7 @@ export function LocationSection() {
         <div className={styles.location}>
           {site.mapsEmbedUrl ? (
             <div ref={mapRef} className={`${styles.map} ${mapReveal}`}>
-              <iframe src={site.mapsEmbedUrl} title="Mapa de Nails & Go Studio" loading="lazy" />
+              <iframe src={site.mapsEmbedUrl} title="Mapa de Google con la ubicación de Nails & Go Studio en Comas" loading="lazy" referrerPolicy="no-referrer-when-downgrade" />
             </div>
           ) : (
             <div ref={mapRef} className={`${styles.map} ${mapReveal}`} role="img" aria-label="Espacio para el mapa de Google, próximamente">

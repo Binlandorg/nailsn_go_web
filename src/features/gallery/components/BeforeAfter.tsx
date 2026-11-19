@@ -1,6 +1,6 @@
 import { useState, type CSSProperties } from 'react'
-import { CameraIcon } from '../../../shared/components/icons/icons'
-import { useReveal } from '../../../shared/components/ui/useReveal'
+import { CameraIcon } from '@/shared/components/icons/icons'
+import { useReveal } from '@/shared/hooks/useReveal'
 import styles from './BeforeAfter.module.css'
 
 export function BeforeAfter() {

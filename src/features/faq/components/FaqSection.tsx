@@ -1,14 +1,15 @@
-import { SectionHead } from '../../../shared/components/ui/SectionHead'
-import { faq } from '../data/faq'
+import { SectionHead } from '@/shared/components/ui/SectionHead'
+import { faq } from '@/features/faq/data/faq'
 import styles from './FaqSection.module.css'
 
 export function FaqSection() {
   return (
-    <section className={`section ${styles.faq}`} id="preguntas" aria-labelledby="faq-title">
-      <div className={`wrap ${styles.inner}`}>
+    <section className="section" id="preguntas" aria-labelledby="faq-title">
+      <div className="wrap">
         <SectionHead
           eyebrow="Preguntas frecuentes"
           titleId="faq-title"
+          sub="Lo que más nos preguntan antes de reservar."
           title={
             <>
               Antes de tu <em>cita</em>

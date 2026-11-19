@@ -1,55 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
-import { ChevronIcon } from '../../../shared/components/icons/icons'
-import { SectionHead } from '../../../shared/components/ui/SectionHead'
-import { useReveal } from '../../../shared/components/ui/useReveal'
-import { bookingText, whatsappLink } from '../../../shared/utils/whatsapp'
-import { categories, servicesByCategory, type Category, type Service } from '../data/services'
-import { CategoryIcon } from './CategoryIcon'
+import { SectionHead } from '@/shared/components/ui/SectionHead'
+import { categories, servicesByCategory, type Service } from '@/features/services/data/services'
+import { CategoryBlock } from './CategoryBlock'
 import { ServiceDialog } from './ServiceDialog'
 import styles from './ServicesSection.module.css'
-
-interface CategoryBlockProps {
-  category: Category
-  items: Service[]
-  onOpen: (service: Service) => void
-}
-
-function CategoryBlock({ category, items, onOpen }: CategoryBlockProps) {
-  const { ref, revealClass } = useReveal<HTMLElement>()
-  return (
-    <section
-      ref={ref}
-      className={`${styles.category} ${revealClass}`}
-      id={`cat-${category.id}`}
-      data-category={category.id}
-      aria-labelledby={`cat-${category.id}-title`}
-    >
-      <div className={styles.head}>
-        <CategoryIcon id={category.id} />
-        <h3 id={`cat-${category.id}-title`}>{category.name}</h3>
-      </div>
-      <ul className={styles.list}>
-        {items.map((service) => (
-          <li key={service.id} className={styles.service}>
-            <button className={styles.open} type="button" aria-haspopup="dialog" onClick={() => onOpen(service)}>
-              <span className={styles.name}>{service.name}</span>
-              <span className={styles.desc}>{service.description}</span>
-              <span className={styles.priceMobile}>{service.price}</span>
-              <ChevronIcon className={styles.chev} />
-            </button>
-            <div className={styles.meta}>
-              <span>{service.duration}</span>
-              <span className={styles.price}>{service.price}</span>
-            </div>
-            <a className={styles.cta} href={whatsappLink(bookingText(service.name))} target="_blank" rel="noopener">
-              Reservar este servicio
-            </a>
-          </li>
-        ))}
-      </ul>
-    </section>
-  )
-}
 
 export function ServicesSection() {
   const [selected, setSelected] = useState<Service | null>(null)
@@ -76,11 +30,14 @@ export function ServicesSection() {
     const nav = chipsRef.current
     if (!nav || !window.matchMedia('(max-width: 767px)').matches) return
     const chip = nav.querySelector<HTMLElement>(`[href="#cat-${current}"]`)
-    if (chip) nav.scrollTo({ left: chip.offsetLeft - 16, behavior: 'smooth' })
+    if (chip) {
+      const left = nav.scrollLeft + chip.getBoundingClientRect().left - nav.getBoundingClientRect().left - 16
+      nav.scrollTo({ left: Math.max(0, left), behavior: 'smooth' })
+    }
   }, [current])
 
   return (
-    <section className={`section ${styles.services}`} id="servicios" aria-labelledby="servicios-title">
+    <section className="section" id="servicios" aria-labelledby="servicios-title">
       <div className="wrap">
         <SectionHead
           eyebrow="Servicios"

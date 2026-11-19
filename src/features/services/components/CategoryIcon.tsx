@@ -1,5 +1,5 @@
 import type { SVGProps } from 'react'
-import type { CategoryId } from '../data/services'
+import type { CategoryId } from '@/features/services/data/services'
 
 const paths: Record<CategoryId, string[]> = {
   unas: ['M18 42V22a6 6 0 0 1 12 0v20', 'M18 26h12', 'M21 16c0-6 3-10 3-10s3 4 3 10'],

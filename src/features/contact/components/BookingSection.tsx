@@ -1,7 +1,9 @@
 import { useState, type FormEvent } from 'react'
-import { buttonClass } from '../../../shared/components/ui/buttonClass'
-import { whatsappLink } from '../../../shared/utils/whatsapp'
-import { servicesByCategory } from '../../services/data/services'
+import { buttonClass } from '@/shared/utils/buttonClass'
+import { SectionHead } from '@/shared/components/ui/SectionHead'
+import { useReveal } from '@/shared/hooks/useReveal'
+import { whatsappLink } from '@/shared/utils/whatsapp'
+import { servicesByCategory } from '@/features/services/data/services'
 import styles from './BookingSection.module.css'
 
 type FieldName = 'nombre' | 'servicio' | 'fecha' | 'hora'
@@ -35,18 +37,22 @@ export function BookingSection() {
   }
 
   const isInvalid = (name: FieldName) => invalid.includes(name)
+  const { ref: formRef, revealClass: formReveal } = useReveal<HTMLFormElement>()
 
   return (
-    <section className={`section ${styles.booking}`} id="reservar" aria-labelledby="reservar-title">
-      <div className={`wrap ${styles.inner}`}>
-        <div className={styles.text}>
-          <p className="eyebrow eyebrow-light">Reservas</p>
-          <h2 id="reservar-title">
-            Separa tu <em>cita</em>
-          </h2>
-          <p>Completa tus datos y te llevamos a WhatsApp con el mensaje listo. Te confirmamos la disponibilidad por ahí.</p>
-        </div>
-        <form className={styles.form} noValidate onSubmit={onSubmit}>
+    <section className="section" id="reservar" aria-labelledby="reservar-title">
+      <div className="wrap">
+        <SectionHead
+          eyebrow="Reservas"
+          titleId="reservar-title"
+          title={
+            <>
+              Separa tu <em>cita</em>
+            </>
+          }
+          sub="Completa tus datos y te llevamos a WhatsApp con el mensaje listo. Te confirmamos la disponibilidad por ahí."
+        />
+        <form ref={formRef} className={`card ${styles.form} ${formReveal}`} noValidate onSubmit={onSubmit}>
           <div className={styles.field}>
             <label htmlFor="f-nombre">Nombre</label>
             <input id="f-nombre" name="nombre" type="text" autoComplete="given-name" required aria-invalid={isInvalid('nombre')} />

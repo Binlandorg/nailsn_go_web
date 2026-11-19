@@ -1,8 +1,8 @@
 import { useEffect, useRef } from 'react'
-import { CloseIcon } from '../../../shared/components/icons/icons'
-import { Button } from '../../../shared/components/ui/Button'
-import { bookingText, whatsappLink } from '../../../shared/utils/whatsapp'
-import { categoryName, type Service } from '../data/services'
+import { CloseIcon } from '@/shared/components/icons/icons'
+import { Button } from '@/shared/components/ui/Button'
+import { bookingText, whatsappLink } from '@/shared/utils/whatsapp'
+import { categoryName, type Service } from '@/features/services/data/services'
 import styles from './ServiceDialog.module.css'
 
 interface ServiceDialogProps {

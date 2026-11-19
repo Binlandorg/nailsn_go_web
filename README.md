@@ -4,7 +4,20 @@ Landing de una página para Nails & Go Studio, preparada por Binland como propue
 
 ## Stack
 
-React 19 + TypeScript + Vite 8, CSS Modules y React Compiler. Organizado por features en `src/features`.
+React 19 + TypeScript (strict) + Vite 8, CSS Modules y React Compiler. Organizado por features en `src/features`.
+
+## Estructura
+
+| Carpeta | Contenido |
+|---|---|
+| `src/app` | `App.tsx` y estilos globales (`styles/tokens.css`, `base.css`, `ui.css`) |
+| `src/config` | Datos del negocio (`site.ts`) y fotos (`photos.ts`) |
+| `src/features/<sección>` | `components/` (un componente por archivo), `data/` (contenido tipado) e `index.ts` (exporta la sección) |
+| `src/shared/components` | Piezas reutilizables: `brand`, `ui`, `icons`, `decorations` |
+| `src/shared/hooks` | `useInView`, `useReveal`, `useCarouselDots` |
+| `src/shared/utils` | `cn`, `buttonClass`, `whatsapp` |
+
+Imports con el alias `@/` → `src/` (configurado en `tsconfig.app.json` y `vite.config.ts`). Solo los archivos de la misma carpeta se importan con `./`.
 
 ```bash
 pnpm install
@@ -18,11 +31,13 @@ pnpm preview
 
 | Orden | Sección | Feature |
 |---|---|---|
-| 1 | Portada (video con foto de respaldo) | `hero` |
+| — | Barra de anuncios (marquee) | `navigation` |
+| 1 | Portada (foto del interior, preparada para video) | `hero` |
+| — | Banda de servicios (marquee) | `shared/components/ui/GlamBand` |
 | 2 | Servicios por categoría con panel de detalle | `services` |
-| 3 | Trabajos (galería con filtros y antes/después) | `gallery` |
+| 3 | Galería (fotos referenciales, filtros y antes/después) | `gallery` |
 | 4 | Testimonios | `testimonials` |
-| 5 | El estudio (foto, clips e higiene) | `studio` |
+| 5 | El estudio (foto del mural con el lema, puntos fuertes, clips e higiene) | `studio` |
 | 6 | Promociones (ruleta y combos) | `promotions` |
 | 7 | Reservas (formulario que abre WhatsApp) | `contact` |
 | 8 | Preguntas frecuentes | `faq` |
@@ -37,7 +52,9 @@ pnpm preview
 | Fotos | `src/assets/photos/` y `src/config/photos.ts` |
 | Videos de portada | `public/video/hero-vertical.mp4` (móvil) y `public/video/hero-horizontal.mp4` (escritorio) |
 | Servicios, categorías, duración y precios | `src/features/services/data/services.ts` (alimenta tarjetas, panel y formulario) |
-| Fotos de trabajos | `src/features/gallery/data/gallery.ts` (campo `image`) |
+| Fotos de trabajos | `src/features/gallery/data/gallery.ts` (campo `image`); hoy usa fotos referenciales de Unsplash (`referencePhotos` en `src/config/photos.ts`) |
+| Puntos fuertes del estudio | `src/features/studio/data/highlights.ts` |
+| Mensajes de la barra de anuncios | `announcements` en `src/config/site.ts` |
 | Testimonios | `src/features/testimonials/data/testimonials.ts` |
 | Premios de la ruleta y combos | `src/features/promotions/data/promotions.ts` |
 | Preguntas frecuentes | `src/features/faq/data/faq.ts` |
@@ -45,16 +62,36 @@ pnpm preview
 | Colores, fuentes y medidas | `src/app/styles/tokens.css` |
 | Estilos globales (wrap, section, eyebrow, badge, link) | `src/app/styles/ui.css` |
 
+## Sistema de diseño
+
+- Tipografía: Outfit 800 para títulos (escala fija h1/h2/h3), Montserrat para texto. Great Vibes solo en la palabra "aesthetic" del hero. El logo usa sus propias fuentes y no se toca.
+- Encabezados de sección: un solo componente `SectionHead` (kicker rosa en mayúsculas + título + subtítulo corto).
+- Botón primario rosa `--pink-strong` sólido con texto blanco (hover `--pink`) y secundario con borde rosa; misma altura, radio y sombra (`shared/components/ui/Button`).
+- Tarjetas e imágenes: radio `--radius` y sombra `--shadow` (clase global `.card`).
+- Secciones con el mismo espaciado (`--section-y`) y fondos alternados blanco cálido / rosa pastel automáticos (`ui.css`).
+- Una sola animación de entrada (`useReveal`: fade + leve subida); marquee y sparkles discretos.
+
 ## Marca
 
 - Logo oficial: letrero circular "NAILS & GO studio" con pincel rosa sobre la "A" (Josefin Sans dorado y Quicksand).
-- Colores: rosa del negocio #D84DCE (botones y acentos), #A0309A (texto rosa), dorado #C8A96B, ciruela #3B2236 para textos, blanco cálido #F7F4F2.
+- Colores (todos en `tokens.css`, sin hex sueltos en los módulos):
+  - `--pink` #E8409A, rosa neón del letrero: acentos, palabra "aesthetic", iconos, bordes decorativos, chips activos, focos.
+  - `--pink-strong` #CC2F86: fondo de botones y bordes de botones secundarios (blanco encima: 4,9:1).
+  - `--pink-text` #B8277A: texto rosa pequeño sobre fondos claros (kickers, enlaces, precios), para cumplir AA (≥ 5,2:1).
+  - Ciruela #3B2236 para textos, blanco cálido #F7F4F2 y rosa pastel #FBEEF5 de fondo. Dorado #C8A96B solo en el logo y los sparkles.
 - El letrero exterior ("Nails & Go Beauty Studio" con N cursiva) y los banners ("Nails N' Go") usan otras versiones de la marca.
+
+## Datos tomados de la versión 1 (rama `propuesta/salon-spa`), por confirmar con la dueña
+
+- Dirección Retablo 729, Comas, Lima Norte, y horario lunes a domingo desde las 10:00.
+- Facebook "Nails n GO" y mensajes de Instagram como respaldo.
+- Ficha de Google Maps "Nails n' GO" (coordenadas -11.9323528, -77.0582215): enlace en Ubicación y en "Ver reseñas en Google"; mapa embebido sin API key. No se usan fotos ni textos de reseñas de Google.
+- Fotos de uñas de Unsplash en la galería: referenciales, se reemplazan por trabajos reales.
 
 ## Pendiente con el estudio
 
 - Permiso para usar fotos y marca. Las fotos actuales son referenciales; la fachada fue mejorada con IA.
-- Dirección, horario, mapa y enlace a reseñas de Google.
+- Confirmar dirección, horario y la ficha de Google Maps.
 - Lista final de servicios, descripciones, duración y precios.
 - Fotos reales de trabajos, antes y después, y clips verticales del estudio.
 - Videos de portada.

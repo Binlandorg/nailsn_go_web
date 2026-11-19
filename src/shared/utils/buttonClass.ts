@@ -1,5 +1,5 @@
-import { cn } from '../../utils/cn'
-import styles from './Button.module.css'
+import { cn } from '@/shared/utils/cn'
+import styles from '@/shared/components/ui/Button.module.css'
 
 export interface ButtonStyleProps {
   variant?: 'primary' | 'outline'

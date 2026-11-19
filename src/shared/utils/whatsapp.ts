@@ -1,4 +1,4 @@
-import { site } from '../../config/site'
+import { site } from '@/config/site'
 
 export const whatsappLink = (text: string = site.whatsapp.greeting) =>
   `https://wa.me/${site.whatsapp.number}?text=${encodeURIComponent(text)}`

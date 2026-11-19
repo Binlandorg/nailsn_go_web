@@ -1,6 +1,6 @@
-import { WhatsAppIcon } from '../../../shared/components/icons/icons'
-import { Button } from '../../../shared/components/ui/Button'
-import { whatsappLink } from '../../../shared/utils/whatsapp'
+import { WhatsAppIcon } from '@/shared/components/icons/icons'
+import { Button } from '@/shared/components/ui/Button'
+import { whatsappLink } from '@/shared/utils/whatsapp'
 import styles from './QuickActions.module.css'
 
 export function QuickActions() {

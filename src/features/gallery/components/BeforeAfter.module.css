@@ -1,20 +1,20 @@
 .wrap { margin-top: 56px; }
 .head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 20px; margin-bottom: 18px; }
-.head h3 { font-size: 28px; font-weight: 400; }
+.head h3 { margin: 0; }
 .head p { font-size: 14px; color: var(--ink-soft); }
-.compare { position: relative; aspect-ratio: 4 / 3; border-radius: 24px; overflow: hidden; box-shadow: 0 30px 60px -40px rgba(42, 23, 38, 0.6); }
-.compare:focus-within { outline: 3px solid var(--neon); outline-offset: 4px; }
+.compare { position: relative; aspect-ratio: 4 / 3; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
+.compare:focus-within { outline: 3px solid var(--pink); outline-offset: 4px; }
 .side { position: absolute; inset: 0; display: grid; align-content: center; gap: 10px; padding-inline: 10%; }
 .side > * { max-width: 40%; }
 .side svg { width: 52px; height: 52px; fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
-.before { background: linear-gradient(160deg, #ECE7E3, #DDD5D0); justify-items: start; }
+.before { background: linear-gradient(160deg, var(--before-from), var(--before-to)); justify-items: start; }
 .before svg { stroke: var(--ink-soft); }
-.after { background: linear-gradient(160deg, #F7D9E9, #E9C7E4); justify-items: end; text-align: right; clip-path: inset(0 0 0 var(--pos)); }
-.after svg { stroke: var(--pink-ink); }
-.label { font: 600 22px var(--geo); letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink); }
+.after { background: linear-gradient(160deg, var(--after-from), var(--after-to)); justify-items: end; text-align: right; clip-path: inset(0 0 0 var(--pos)); }
+.after svg { stroke: var(--pink); }
+.label { font: 800 22px var(--display); letter-spacing: 0.04em; text-transform: uppercase; color: var(--ink); }
 .note { font-size: 11px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-soft); line-height: 1.5; }
-.handle { position: absolute; top: 0; bottom: 0; left: var(--pos); width: 2px; background: var(--white); box-shadow: 0 0 12px rgba(216, 77, 206, 0.8); transform: translateX(-1px); pointer-events: none; }
-.handle span { position: absolute; top: 50%; left: 50%; width: 46px; height: 46px; border-radius: 50%; transform: translate(-50%, -50%); background: var(--white); border: 3px solid var(--neon); box-shadow: 0 0 18px rgba(216, 77, 206, 0.6); }
+.handle { position: absolute; top: 0; bottom: 0; left: var(--pos); width: 2px; background: var(--white); box-shadow: 0 0 10px var(--pink-glow); transform: translateX(-1px); pointer-events: none; }
+.handle span { position: absolute; top: 50%; left: 50%; width: 46px; height: 46px; border-radius: 50%; transform: translate(-50%, -50%); background: var(--white); border: 3px solid var(--primary); box-shadow: var(--shadow); }
 .handle span::before, .handle span::after { content: ""; position: absolute; top: 50%; width: 7px; height: 7px; border-top: 2px solid var(--ink); border-left: 2px solid var(--ink); }
 .handle span::before { left: 9px; transform: translateY(-50%) rotate(-45deg); }
 .handle span::after { right: 9px; transform: translateY(-50%) rotate(135deg); }
@@ -28,7 +28,6 @@
 @media (max-width: 767px) {
   .wrap { margin-top: 28px; }
   .head { margin-bottom: 12px; }
-  .head h3 { font-size: 22px; }
   .compare { aspect-ratio: 16 / 10; }
   .side > * { max-width: 44%; }
   .side svg { width: 40px; height: 40px; }

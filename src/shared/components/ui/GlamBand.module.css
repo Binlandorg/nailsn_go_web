@@ -1,0 +1,25 @@
+.band {
+  padding-block: 18px;
+  background: var(--primary);
+  color: var(--white);
+}
+
+.word {
+  font: 800 20px var(--display);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.sparkle {
+  width: 14px;
+  height: 14px;
+  color: var(--gold);
+  flex-shrink: 0;
+}
+
+@media (max-width: 767px) {
+  .band { padding-block: 12px; }
+  .word { font-size: 16px; }
+  .sparkle { width: 12px; height: 12px; }
+}

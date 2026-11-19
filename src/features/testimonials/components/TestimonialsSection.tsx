@@ -1,20 +1,21 @@
-import { site } from '../../../config/site'
-import { Badge } from '../../../shared/components/ui/Badge'
-import { Button } from '../../../shared/components/ui/Button'
-import { SectionHead } from '../../../shared/components/ui/SectionHead'
-import { useCarouselDots } from '../../../shared/hooks/useCarouselDots'
-import { testimonials } from '../data/testimonials'
+import { site } from '@/config/site'
+import { Badge } from '@/shared/components/ui/Badge'
+import { Button } from '@/shared/components/ui/Button'
+import { SectionHead } from '@/shared/components/ui/SectionHead'
+import { useCarouselDots } from '@/shared/hooks/useCarouselDots'
+import { testimonials } from '@/features/testimonials/data/testimonials'
 import styles from './TestimonialsSection.module.css'
 
 export function TestimonialsSection() {
   const { trackRef, active, goTo } = useCarouselDots<HTMLUListElement>()
 
   return (
-    <section className={`section ${styles.testimonials}`} id="testimonios" aria-labelledby="testimonios-title">
+    <section className="section" id="testimonios" aria-labelledby="testimonios-title">
       <div className="wrap">
         <SectionHead
           eyebrow="Testimonios"
           titleId="testimonios-title"
+          sub="Aquí irán las opiniones reales de nuestras clientas."
           title={
             <>
               Lo que dicen nuestras <em>clientas</em>
@@ -23,7 +24,7 @@ export function TestimonialsSection() {
         />
         <ul ref={trackRef} className={styles.list}>
           {testimonials.map((item) => (
-            <li key={item.id} className={styles.card}>
+            <li key={item.id} className={`card ${styles.card}`}>
               <span className={styles.quote} aria-hidden="true">
                 &ldquo;
               </span>
@@ -49,7 +50,13 @@ export function TestimonialsSection() {
           ))}
         </div>
         <div className="center">
-          <Button href={site.reviewsUrl ?? '#'} variant="outline" aria-describedby="resenas-nota">
+          <Button
+            href={site.reviewsUrl ?? '#'}
+            variant="outline"
+            target={site.reviewsUrl ? '_blank' : undefined}
+            rel={site.reviewsUrl ? 'noopener' : undefined}
+            aria-describedby={site.reviewsUrl ? undefined : 'resenas-nota'}
+          >
             Ver reseñas en Google
           </Button>
           {!site.reviewsUrl && (

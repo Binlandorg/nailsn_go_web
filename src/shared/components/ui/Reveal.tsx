@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react'
-import { cn } from '../../utils/cn'
-import { useReveal } from './useReveal'
+import { cn } from '@/shared/utils/cn'
+import { useReveal } from '@/shared/hooks/useReveal'
 
 interface RevealProps {
   children: ReactNode

@@ -1,0 +1,25 @@
+.bar {
+  height: var(--bar-h);
+  display: flex;
+  align-items: center;
+  background: var(--plum-deep);
+  color: var(--rose-soft);
+  font: 600 12px var(--sans);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.marquee { width: 100%; }
+
+.item { white-space: nowrap; }
+
+.heart {
+  width: 10px;
+  height: 10px;
+  color: var(--rose);
+  flex-shrink: 0;
+}
+
+@media (max-width: 767px) {
+  .bar { font-size: 11px; letter-spacing: 0.12em; }
+}

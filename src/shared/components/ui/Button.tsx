@@ -1,5 +1,5 @@
 import type { AnchorHTMLAttributes } from 'react'
-import { buttonClass, type ButtonStyleProps } from './buttonClass'
+import { buttonClass, type ButtonStyleProps } from '@/shared/utils/buttonClass'
 
 type ButtonProps = AnchorHTMLAttributes<HTMLAnchorElement> & ButtonStyleProps & { href: string }
 

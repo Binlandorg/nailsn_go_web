@@ -1,6 +1,9 @@
 import { useEffect, useRef } from 'react'
-import { heroVideo, photos } from '../../../config/photos'
-import { Button } from '../../../shared/components/ui/Button'
+import { heroVideo, photos } from '@/config/photos'
+import { site } from '@/config/site'
+import { Sparkle } from '@/shared/components/decorations/Sparkle'
+import { ArrowRightIcon, BrushIcon } from '@/shared/components/icons/icons'
+import { Button } from '@/shared/components/ui/Button'
 import styles from './Hero.module.css'
 
 export function Hero() {
@@ -31,26 +34,34 @@ export function Hero() {
           <source media="(max-width: 959px)" src={heroVideo.vertical} type="video/mp4" />
           <source src={heroVideo.horizontal} type="video/mp4" />
         </video>
+        <p className={styles.chip}>
+          <BrushIcon />
+          Uñas · Cejas · Pestañas
+        </p>
+        <Sparkle size={30} className={styles.sparkleA} />
+        <Sparkle size={18} tone="white" delay={900} className={styles.sparkleB} />
       </div>
-      <div className={styles.text}>
+      <div className={styles.copy}>
+        <p className={`eyebrow ${styles.kicker}`}>Salón spa · {site.area}</p>
         <h1 className={styles.title}>
-          <span className={styles.line}>Good Day,</span>
+          <span className={styles.line}>El salón más</span>
           <span className={styles.line}>
-            Good <em>Nails</em>,
+            <span className={styles.script}>aesthetic</span>
           </span>
-          <span className={styles.line}>Good Mood.</span>
+          <span className={styles.line}>del Cono Norte.</span>
         </h1>
-        <p className={styles.sub}>
+        <p className={styles.lead}>
           Uñas, pedicure spa, pestañas, cejas, faciales y depilación en un espacio pensado para que salgas sintiéndote increíble.
         </p>
-        <p className={styles.subMobile}>Uñas, pestañas, cejas y spa en un solo lugar.</p>
-        <div className={styles.actions}>
+        <p className={styles.leadMobile}>Uñas, pestañas, cejas y spa en un solo lugar.</p>
+        <div className={styles.ctas}>
           <Button href="#reservar" className={styles.cta}>
             Reservar por WhatsApp
+            <ArrowRightIcon className={styles.arrow} />
           </Button>
-          <a className={`link ${styles.more}`} href="#servicios">
+          <Button href="#servicios" variant="outline" className={styles.secondary}>
             Ver servicios
-          </a>
+          </Button>
         </div>
       </div>
     </section>
