@@ -1,4 +1,3 @@
-import { photos } from '@/config/photos'
 import { site } from '@/config/site'
 import { ClockIcon, InstagramIcon, MapPinIcon, PinIcon, WhatsAppIcon } from '@/shared/components/icons/icons'
 import { Button } from '@/shared/components/ui/Button'
@@ -11,7 +10,6 @@ import styles from './LocationSection.module.css'
 export function LocationSection() {
   const { ref: infoRef, revealClass: infoReveal } = useReveal<HTMLDivElement>()
   const { ref: mapRef, revealClass: mapReveal } = useReveal<HTMLDivElement>()
-  const { ref: photoRef, revealClass: photoReveal } = useReveal<HTMLElement>()
 
   return (
     <section className="section" id="ubicacion" aria-labelledby="ubicacion-title">
@@ -100,16 +98,6 @@ export function LocationSection() {
             </div>
           )}
         </div>
-        <figure ref={photoRef} className={`${styles.photo} ${photoReveal}`}>
-          <img
-            src={photos.fachada.src}
-            alt="Fachada del local de Nails & Go Studio de noche, con el letrero iluminado y el interior rosa visible"
-            width={photos.fachada.width}
-            height={photos.fachada.height}
-            loading="lazy"
-          />
-          <figcaption>Así nos encuentras</figcaption>
-        </figure>
       </div>
     </section>
   )
