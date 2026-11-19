@@ -28,18 +28,6 @@
 .col a { transition: color .2s; }
 .col a:hover { color: var(--white); }
 
-.watermark {
-  font: 900 clamp(80px, 17vw, 240px)/0.9 var(--display);
-  letter-spacing: -0.05em;
-  text-align: center;
-  white-space: nowrap;
-  margin: 40px 0 8px;
-  background: linear-gradient(180deg, rgba(246, 184, 238, 0.35), rgba(246, 184, 238, 0.04));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  user-select: none;
-}
 
 .bottom {
   display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px;
@@ -65,6 +53,5 @@
   .col a { display: inline-flex; align-items: center; min-height: 40px; }
   .col p, .col li { font-size: 16px; }
   .col a { font-size: 16px; }
-  .watermark { display: none; }
   .bottom { margin-top: 8px; font-size: 13px; flex-direction: column; gap: 4px; }
 }

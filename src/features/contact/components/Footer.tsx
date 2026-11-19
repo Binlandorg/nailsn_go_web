@@ -67,9 +67,6 @@ export function Footer() {
           </ul>
         </div>
       </div>
-      <p className={styles.watermark} aria-hidden="true">
-        Nails &amp; Go
-      </p>
       <div className={`wrap ${styles.bottom}`}>
         <p>© {new Date().getFullYear()} {site.name}</p>
         <p>{site.demoNote}</p>

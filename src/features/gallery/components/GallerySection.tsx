@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react'
 import { site } from '@/config/site'
-import { InstagramIcon } from '@/shared/components/icons/icons'
+import { HeartIcon, InstagramIcon } from '@/shared/components/icons/icons'
 import { Button } from '@/shared/components/ui/Button'
 import { SectionHead } from '@/shared/components/ui/SectionHead'
 import { useAutoScroll } from '@/shared/hooks/useAutoScroll'
@@ -62,10 +62,21 @@ export function GallerySection() {
               aria-hidden={clone || undefined}
             >
               {item.image ? (
-                <>
+                <a
+                  className={styles.link}
+                  href={site.instagram.url}
+                  target="_blank"
+                  rel="noopener"
+                  tabIndex={clone ? -1 : undefined}
+                  aria-label={`${item.title}, ver en Instagram`}
+                >
                   <img src={item.image} alt={item.alt ?? item.title} loading="lazy" />
                   <span className={styles.caption}>{item.title}</span>
-                </>
+                  <span className={styles.overlay} aria-hidden="true">
+                    <HeartIcon className={styles.heart} />
+                    <span className={styles.overlayText}>Ver en Instagram</span>
+                  </span>
+                </a>
               ) : (
                 <>
                   <div className={styles.ring}>
