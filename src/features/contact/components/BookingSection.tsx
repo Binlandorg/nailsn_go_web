@@ -1,5 +1,5 @@
 import { photos } from '../../../config/photos'
-import { site } from '../../../config/site'
+import { bookingChannel, bookingUrl, fullAddress, hasWhatsapp, site } from '../../../config/site'
 import { Button } from '../../../shared/components/ui/Button'
 import { Reveal } from '../../../shared/components/ui/Reveal'
 import { ScriptText } from '../../../shared/components/ui/ScriptText'
@@ -14,38 +14,55 @@ export function BookingSection() {
       <div className="container">
         <Reveal variant="zoom">
           <div className={styles.card}>
-            <Sparkle size={34} tone="white" className={styles.sparkleA} />
-            <Sparkle size={18} tone="bubblegum" delay={600} className={styles.sparkleB} />
+            <Sparkle size={34} className={styles.sparkleA} />
+            <Sparkle size={18} tone="rose" delay={600} className={styles.sparkleB} />
 
             <div className={styles.content}>
-              <p className={styles.eyebrow}>Reservas abiertas</p>
+              <p className={styles.eyebrow}>Agenda tu cita</p>
               <h2 className={styles.title}>
-                ¿Lista para <ScriptText tone="white">brillar?</ScriptText>
+                ¿Lista para <ScriptText tone="gold">consentirte?</ScriptText>
               </h2>
               <p className={styles.lead}>
-                Escríbenos y elegimos juntas el día, la hora y el diseño. Te respondemos rapidito ♡
+                Escríbenos por {bookingChannel}, cuéntanos qué servicio o promo quieres y te confirmamos día y hora.
               </p>
 
               <div className={styles.ctas}>
-                <Button href={site.whatsapp.url} target="_blank" rel="noreferrer" variant="light" size="lg" icon={<WhatsappIcon />}>
-                  Reservar por WhatsApp
+                <Button
+                  href={bookingUrl()}
+                  target="_blank"
+                  rel="noreferrer"
+                  size="lg"
+                  icon={hasWhatsapp ? <WhatsappIcon /> : <InstagramIcon />}
+                >
+                  Agendar por {bookingChannel}
                 </Button>
-                <Button href={site.instagram.url} target="_blank" rel="noreferrer" variant="outlineLight" size="lg" icon={<InstagramIcon />}>
-                  Escríbenos por DM
-                </Button>
+                {hasWhatsapp && (
+                  <Button
+                    href={site.instagram.dm}
+                    target="_blank"
+                    rel="noreferrer"
+                    variant="outlineLight"
+                    size="lg"
+                    icon={<InstagramIcon />}
+                  >
+                    Escríbenos por DM
+                  </Button>
+                )}
               </div>
 
               <ul className={styles.info}>
-                <li>
-                  <ClockIcon />
-                  <span>
-                    {site.schedule[0].days} · {site.schedule[0].hours}
-                  </span>
-                </li>
+                {site.schedule.map((slot) => (
+                  <li key={slot.days}>
+                    <ClockIcon />
+                    <span>
+                      {slot.days} · {slot.hours}
+                    </span>
+                  </li>
+                ))}
                 <li>
                   <MapPinIcon />
                   <a href={site.mapsUrl} target="_blank" rel="noreferrer">
-                    {site.address}
+                    {fullAddress}
                   </a>
                 </li>
               </ul>
@@ -53,16 +70,16 @@ export function BookingSection() {
 
             <div className={styles.visual}>
               <figure className={styles.photo}>
-                <img src={photos.polishBottles} alt="Colección de esmaltes" loading="lazy" />
+                <img src={photos.polishBottles} alt="Colección de esmaltes" loading="lazy" width={420} height={420} />
               </figure>
               <figure className={styles.photoSmall}>
-                <img src={photos.pinkFlatlay} alt="Delineador y labial sobre fondo rosa" loading="lazy" />
+                <img src={photos.pinkFlatlay} alt="Maquillaje sobre fondo rosa" loading="lazy" width={200} height={200} />
               </figure>
               <SpinningBadge
                 className={styles.badge}
                 href={site.instagram.url}
                 label="Síguenos en Instagram"
-                text="Nails & Go • Studio • Glam • "
+                text="Nails & Go • Studio • Comas • "
               />
             </div>
           </div>

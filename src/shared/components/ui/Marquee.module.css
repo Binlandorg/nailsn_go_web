@@ -21,7 +21,6 @@
 .group {
   display: flex;
   align-items: center;
-  /* evita huecos en el bucle cuando hay poco contenido en pantallas anchas */
   min-width: 100vw;
   justify-content: space-around;
   gap: var(--marquee-gap);

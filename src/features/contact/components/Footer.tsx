@@ -1,4 +1,4 @@
-import { site } from '../../../config/site'
+import { bookingUrl, fullAddress, hasWhatsapp, site } from '../../../config/site'
 import { Logo } from '../../../shared/components/brand/Logo'
 import { HeartIcon, InstagramIcon, WhatsappIcon } from '../../../shared/components/icons/icons'
 import { navLinks } from '../../navigation/data/navLinks'
@@ -17,9 +17,11 @@ export function Footer() {
             <a href={site.instagram.url} target="_blank" rel="noreferrer" aria-label="Instagram">
               <InstagramIcon />
             </a>
-            <a href={site.whatsapp.url} target="_blank" rel="noreferrer" aria-label="WhatsApp">
-              <WhatsappIcon />
-            </a>
+            {hasWhatsapp && (
+              <a href={bookingUrl()} target="_blank" rel="noreferrer" aria-label="WhatsApp">
+                <WhatsappIcon />
+              </a>
+            )}
           </div>
         </div>
 
@@ -49,17 +51,23 @@ export function Footer() {
         <div>
           <h3 className={styles.heading}>Contacto</h3>
           <ul className={styles.list}>
-            <li>
-              <a href={site.whatsapp.url} target="_blank" rel="noreferrer">
-                {site.whatsapp.display}
-              </a>
-            </li>
+            {hasWhatsapp && (
+              <li>
+                <a href={bookingUrl()} target="_blank" rel="noreferrer">
+                  {site.whatsapp.display}
+                </a>
+              </li>
+            )}
             <li>
               <a href={site.instagram.url} target="_blank" rel="noreferrer">
                 {site.instagram.handle}
               </a>
             </li>
-            <li>{site.address}</li>
+            <li>
+              <a href={site.mapsUrl} target="_blank" rel="noreferrer">
+                {fullAddress}
+              </a>
+            </li>
           </ul>
         </div>
       </div>
@@ -73,7 +81,7 @@ export function Footer() {
           © {year} {site.name}
         </span>
         <span className={styles.love}>
-          Hecho con <HeartIcon /> y mucho glam
+          Hecho con <HeartIcon /> en Comas
         </span>
       </div>
     </footer>

@@ -10,12 +10,18 @@ interface SpinningBadgeProps {
   className?: string
 }
 
-/** Sello circular con texto girando, estilo sticker de Instagram. */
 export function SpinningBadge({ text, href, label, className }: SpinningBadgeProps) {
   const pathId = useId()
+  const external = href.startsWith('http')
 
   return (
-    <a href={href} className={cn(styles.badge, className)} aria-label={label}>
+    <a
+      href={href}
+      className={cn(styles.badge, className)}
+      aria-label={label}
+      target={external ? '_blank' : undefined}
+      rel={external ? 'noreferrer' : undefined}
+    >
       <svg className={styles.ring} viewBox="0 0 120 120" aria-hidden="true">
         <defs>
           <path id={pathId} d="M60 60m-46 0a46 46 0 1 1 92 0a46 46 0 1 1-92 0" />

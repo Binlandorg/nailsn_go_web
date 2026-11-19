@@ -9,7 +9,7 @@
   display: flex;
   flex-direction: column-reverse;
   padding-left: 16px;
-  border-left: 3px solid var(--color-bubblegum);
+  border-left: 3px solid var(--color-gold);
   animation: pop 0.7s var(--ease-bounce) both;
 }
 
@@ -19,7 +19,7 @@
   font-weight: 800;
   line-height: 1.1;
   letter-spacing: -0.03em;
-  color: var(--color-fuchsia);
+  color: var(--color-plum);
 }
 
 .label {

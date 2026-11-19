@@ -4,12 +4,12 @@
   animation: twinkle 3.2s ease-in-out infinite;
 }
 
-.fuchsia {
-  color: var(--color-fuchsia);
+.gold {
+  color: var(--color-gold);
 }
 
-.bubblegum {
-  color: var(--color-bubblegum);
+.rose {
+  color: var(--color-rose);
 }
 
 .white {

@@ -4,14 +4,12 @@ import styles from './Marquee.module.css'
 
 interface MarqueeProps {
   children: ReactNode
-  /** Segundos que tarda en recorrer una vuelta completa. */
   duration?: number
   reverse?: boolean
   pauseOnHover?: boolean
   className?: string
 }
 
-/** Cinta infinita: el contenido se duplica para que el bucle no tenga cortes. */
 export function Marquee({
   children,
   duration = 30,

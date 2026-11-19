@@ -1,5 +1,5 @@
 import type { ComponentType, SVGProps } from 'react'
-import { BoltIcon, BrushIcon, GemIcon, ShieldIcon } from '../../../shared/components/icons/icons'
+import { BrushIcon, GemIcon, HeartIcon, MapPinIcon } from '../../../shared/components/icons/icons'
 
 export interface Highlight {
   title: string
@@ -9,23 +9,23 @@ export interface Highlight {
 
 export const highlights: Highlight[] = [
   {
-    title: 'Higiene impecable',
-    description: 'Instrumental esterilizado y limas de un solo uso en cada cita.',
-    icon: ShieldIcon,
-  },
-  {
-    title: 'Productos premium',
-    description: 'Geles y esmaltes de alta gama que cuidan tu uña natural.',
+    title: 'Todo en un solo lugar',
+    description: 'Uñas, cejas, pestañas, micropigmentación, faciales y depilación.',
     icon: GemIcon,
   },
   {
-    title: 'Diseño a tu medida',
-    description: 'Traes la idea —o una captura— y la hacemos realidad.',
+    title: 'Promos cada mes',
+    description: 'Combos pensados para que te consientas sin gastar de más.',
+    icon: HeartIcon,
+  },
+  {
+    title: 'Diseños de temporada',
+    description: 'Traes tu idea o una captura y la conversamos en tu cita.',
     icon: BrushIcon,
   },
   {
-    title: 'Glam & Go',
-    description: 'Puntualidad real: sales perfecta y a tiempo para tu plan.',
-    icon: BoltIcon,
+    title: 'En el Cono Norte',
+    description: 'Retablo 729, Comas. Atención de lunes a domingo.',
+    icon: MapPinIcon,
   },
 ]

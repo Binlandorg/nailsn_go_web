@@ -9,12 +9,19 @@
   transform: rotate(-4deg) translateY(0.04em);
 }
 
-.fuchsia {
-  color: var(--color-fuchsia);
+.mauve {
+  color: var(--color-mauve);
 }
 
-.bubblegum {
-  color: var(--color-bubblegum);
+.rose {
+  color: var(--color-rose);
+}
+
+.gold {
+  background: var(--gradient-gold);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 .white {

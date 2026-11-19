@@ -24,7 +24,7 @@
   height: 48px;
   border-radius: 16px;
   background: var(--color-blush);
-  color: var(--color-fuchsia);
+  color: var(--color-mauve);
   transition:
     transform 0.5s var(--ease-bounce),
     background-color 0.3s ease,
@@ -38,7 +38,7 @@
 
 .item:hover .icon {
   transform: rotate(-12deg) scale(1.1);
-  background: var(--color-fuchsia);
+  background: var(--color-mauve);
   color: var(--color-white);
 }
 

@@ -17,10 +17,10 @@ export function GallerySection() {
           eyebrow={site.instagram.handle}
           title={
             <>
-              Directo de nuestro <ScriptText>Instagram</ScriptText>
+              Síguenos en <ScriptText>Instagram</ScriptText>
             </>
           }
-          description="Inspiración real, de clientas reales. Guarda tu favorito y enséñanoslo en tu cita."
+          description={`Diseños, promos y el día a día del salón. Más de ${site.instagram.followers.replace('+', '')} personas ya nos siguen.`}
         />
 
         <ul className={styles.grid}>

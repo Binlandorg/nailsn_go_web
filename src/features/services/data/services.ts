@@ -1,64 +1,53 @@
-import { photos } from '../../../config/photos'
+export type ServiceCategoryId = 'unas' | 'mirada' | 'rostro'
 
-export interface Service {
+export interface Promo {
   id: string
   name: string
-  description: string
-  duration: string
-  price: string
-  image: string
-  featured?: boolean
+  note?: string
+  price: number
 }
 
-// TODO: ajustar precios y duraciones reales.
-export const services: Service[] = [
+export interface ServiceCategory {
+  id: ServiceCategoryId
+  label: string
+  summary: string
+  promos: Promo[]
+}
+
+export const serviceCategories: ServiceCategory[] = [
   {
-    id: 'manicure',
-    name: 'Manicure clásica',
-    description: 'Limado, cutícula y esmaltado tradicional con un acabado impecable.',
-    duration: '45 min',
-    price: '$15',
-    image: photos.nudeManicure,
+    id: 'unas',
+    label: 'Uñas',
+    summary: 'Manicure, pedicure, acrílicas, rubber y soft gel.',
+    promos: [
+      { id: 'mani-pedi-uv', name: 'Manicure UV + Pedicure UV', note: 'Color entero', price: 59 },
+      { id: 'acri-french', name: 'Acri French', price: 59 },
+      { id: 'rubber-pedi', name: 'Rubber + Pedicure UV', note: 'Color entero', price: 79 },
+      { id: 'soft-gel', name: 'Soft gel + Cat eye', price: 54 },
+    ],
   },
   {
-    id: 'gel',
-    name: 'Semipermanente',
-    description: 'Color intenso y brillo espejo que dura hasta tres semanas.',
-    duration: '60 min',
-    price: '$25',
-    image: photos.lilacGlitter,
+    id: 'mirada',
+    label: 'Cejas y pestañas',
+    summary: 'Lifting, laminado, extensiones y visagismo.',
+    promos: [
+      { id: 'lifting', name: 'Lifting + Laminado + Perfilado de cejas', price: 69 },
+      { id: 'visagismo', name: 'Visagismo + Depilación de cejas + Bozo', note: 'Con hilo', price: 59 },
+      { id: 'ext-clasicas', name: 'Extensiones clásicas + Perfilado de cejas', price: 64 },
+      { id: 'ext-rimel', name: 'Extensiones rímel + Laminado de cejas', price: 89 },
+    ],
   },
   {
-    id: 'nail-art',
-    name: 'Nail art glam',
-    description: 'Diseños únicos a mano alzada: corazones, chrome, francesas y lo que imagines.',
-    duration: '90 min',
-    price: '$35',
-    image: photos.colorArt,
-    featured: true,
-  },
-  {
-    id: 'acrilicas',
-    name: 'Uñas acrílicas',
-    description: 'Extensiones esculpidas con la forma y largo que siempre soñaste.',
-    duration: '120 min',
-    price: '$40',
-    image: photos.gelProcess,
-  },
-  {
-    id: 'pedicure',
-    name: 'Pedicure spa',
-    description: 'Baño relajante, exfoliación e hidratación profunda para tus pies.',
-    duration: '60 min',
-    price: '$25',
-    image: photos.pedicure,
-  },
-  {
-    id: 'soft-french',
-    name: 'Soft french & baby boomer',
-    description: 'El clásico elegante en versión degradada, sutil y siempre en tendencia.',
-    duration: '75 min',
-    price: '$30',
-    image: photos.softFrench,
+    id: 'rostro',
+    label: 'Faciales y depilación',
+    summary: 'Tratamientos faciales, dermaplaning y depilación con cera.',
+    promos: [
+      { id: 'dermaplaning', name: 'Dermaplaning + Jelly mask', price: 39 },
+      { id: 'facial', name: 'Tratamiento facial profundo + Depilación de ceja y bozo', note: 'Con hilo', price: 85 },
+      { id: 'piernas', name: 'Depilación de piernas completas', note: 'Con cera', price: 80 },
+      { id: 'axilas', name: 'Depilación de axilas', note: 'Con cera', price: 20 },
+    ],
   },
 ]
+
+export const formatPrice = (price: number) => `S/${price}`

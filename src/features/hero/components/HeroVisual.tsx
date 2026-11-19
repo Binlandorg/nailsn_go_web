@@ -1,4 +1,5 @@
 import { photos } from '../../../config/photos'
+import { bookingUrl } from '../../../config/site'
 import { Sparkle } from '../../../shared/components/decorations/Sparkle'
 import { SpinningBadge } from '../../../shared/components/decorations/SpinningBadge'
 import { BrushIcon } from '../../../shared/components/icons/icons'
@@ -34,18 +35,18 @@ export function HeroVisual() {
 
       <div className={styles.chip}>
         <BrushIcon />
-        Nail art a mano alzada
+        Uñas · Cejas · Pestañas
       </div>
 
       <SpinningBadge
         className={styles.badge}
-        href="#contacto"
-        label="Reserva tu cita"
-        text="Reserva tu cita • Nails & Go • "
+        href={bookingUrl()}
+        label="Agenda tu cita"
+        text="Agenda tu cita • Nails & Go • "
       />
 
       <Sparkle size={34} className={styles.sparkleA} />
-      <Sparkle size={18} tone="bubblegum" delay={800} className={styles.sparkleB} />
+      <Sparkle size={18} tone="rose" delay={800} className={styles.sparkleB} />
       <Sparkle size={24} tone="white" delay={1600} className={styles.sparkleC} />
     </div>
   )

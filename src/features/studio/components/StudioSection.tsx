@@ -1,3 +1,4 @@
+import { bookingUrl } from '../../../config/site'
 import { Button } from '../../../shared/components/ui/Button'
 import { Reveal } from '../../../shared/components/ui/Reveal'
 import { ScriptText } from '../../../shared/components/ui/ScriptText'
@@ -16,13 +17,13 @@ export function StudioSection() {
 
         <div className={styles.content}>
           <SectionHeading
-            eyebrow="Nuestro estudio"
+            eyebrow="El salón"
             title={
               <>
-                Tu momento <ScriptText>para brillar</ScriptText>
+                Consiéntete <ScriptText>al máximo</ScriptText>
               </>
             }
-            description="En Nails & Go creemos que unas uñas bonitas cambian el día. Por eso cuidamos cada detalle: la música, el café, la técnica y, sobre todo, cómo te vas sintiendo."
+            description="Somos un salón spa en Comas, expertas en uñas, cejas y pestañas. Un espacio aesthetic para que salgas lista para tu próximo plan."
           />
 
           <ul className={styles.highlights}>
@@ -36,8 +37,8 @@ export function StudioSection() {
           </ul>
 
           <Reveal delay={300}>
-            <Button href="#contacto" icon={<ArrowRightIcon />}>
-              Quiero mi cita
+            <Button href={bookingUrl()} target="_blank" rel="noreferrer" icon={<ArrowRightIcon />}>
+              Agenda tu cita
             </Button>
           </Reveal>
         </div>
