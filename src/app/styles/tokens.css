@@ -62,5 +62,5 @@
 }
 
 @media (max-width: 767px) {
-  :root { --bar-h: 0px; --nav-h: 60px; --mbar-h: 64px; --section-y: 48px; }
+  :root { --bar-h: 0px; --nav-h: 60px; --mbar-h: 72px; --section-y: 48px; }
 }

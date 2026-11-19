@@ -50,14 +50,15 @@
 @media (max-width: 767px) {
   .hero {
     min-height: calc(100svh - var(--bottom-bar-h, 76px));
-    align-content: end;
+    align-content: center;
     padding: calc(var(--header-h) + 24px) 0 32px;
   }
-  .veil { background: linear-gradient(180deg, rgba(42, 23, 38, 0) 35%, rgba(42, 23, 38, 0.55) 62%, rgba(42, 23, 38, 0.82) 100%); }
+  .veil { background: linear-gradient(180deg, rgba(42, 23, 38, 0.5) 0%, rgba(42, 23, 38, 0.76) 30%, rgba(42, 23, 38, 0.76) 75%, rgba(42, 23, 38, 0.6) 100%); }
   .copy { gap: 14px; max-width: none; width: 100%; }
   .title { font-size: 40px; }
   .script { font-size: 1.25em; }
-  .lead, .info { display: none; }
+  .lead { font-size: 16px; line-height: 1.55; }
+  .info { flex-direction: column; gap: 8px; margin-top: 4px; padding-top: 16px; font-size: 14px; }
   .ctas { align-self: stretch; margin-top: 6px; }
   .ctas .cta { display: none; }
   .ctas .secondary { flex: 1 1 100%; background: var(--primary); color: var(--white); box-shadow: var(--shadow-soft); }

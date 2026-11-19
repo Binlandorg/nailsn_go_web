@@ -31,7 +31,7 @@ h1 em, h2 em, h3 em { font-style: normal; color: var(--pink); }
 @keyframes sheet { from { transform: translateY(100%); } to { transform: none; } }
 
 @media (max-width: 767px) {
-  body { font-size: 15px; padding-bottom: calc(var(--mbar-h) + env(safe-area-inset-bottom)); }
+  body { font-size: 15px; }
   h1 { font-size: 42px; }
   h2 { font-size: 30px; }
   h3 { font-size: 18px; }
