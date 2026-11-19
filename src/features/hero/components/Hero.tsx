@@ -7,10 +7,11 @@ import styles from './Hero.module.css'
 export function Hero() {
   return (
     <section className={styles.hero} id="inicio">
-      <div className={`wrap ${styles.grid}`}>
-        <div className={styles.card}>
-          <HeroSlideshow />
-        </div>
+      <div className={styles.media}>
+        <HeroSlideshow />
+        <div className={styles.veil} aria-hidden="true" />
+      </div>
+      <div className={`wrap ${styles.content}`}>
         <div className={styles.copy}>
           <p className={`eyebrow ${styles.kicker}`}>Salón spa · {site.area}</p>
           <h1 className={styles.title}>
@@ -20,7 +21,6 @@ export function Hero() {
             </span>
             <span className={styles.line}>del Cono Norte.</span>
           </h1>
-          <p className={styles.lead}>Uñas, pedicure spa, pestañas, cejas, faciales y depilación en un espacio pensado para que salgas sintiéndote increíble.</p>
           <div className={styles.ctas}>
             <Button href="#reservar" className={styles.cta}>
               Reservar por WhatsApp

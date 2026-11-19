@@ -46,6 +46,11 @@ export interface HeroSlide {
 
 export const heroSlides: HeroSlide[] = [
   {
+    src: recepcion,
+    alt: 'Recepción de Nails & Go Studio con el letrero circular en rosa neón sobre el jardín vertical',
+    position: '62% 28%',
+  },
+  {
     src: interior,
     alt: 'Zona de pedicure spa de Nails & Go Studio con sillones de terciopelo rosa',
     position: '60% 40%',
