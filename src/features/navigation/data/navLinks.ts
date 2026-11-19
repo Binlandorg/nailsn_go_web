@@ -1,8 +1,8 @@
 export const navLinks = [
-  { href: '#servicios', label: 'Servicios' },
-  { href: '#trabajos', label: 'Trabajos' },
-  { href: '#estudio', label: 'El estudio' },
-  { href: '#promociones', label: 'Promociones' },
-  { href: '#preguntas', label: 'Preguntas' },
-  { href: '#ubicacion', label: 'Ubicación' },
+  { to: '/servicios', label: 'Servicios' },
+  { to: '/#trabajos', label: 'Trabajos' },
+  { to: '/#estudio', label: 'El estudio' },
+  { to: '/#promociones', label: 'Promociones' },
+  { to: '/#preguntas', label: 'Preguntas' },
+  { to: '/#ubicacion', label: 'Ubicación' },
 ] as const

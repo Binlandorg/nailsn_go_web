@@ -2,7 +2,8 @@ import { site } from '@/config/site'
 import { Sparkle } from '@/shared/components/decorations/Sparkle'
 import { ArrowRightIcon, ClockIcon, MapPinIcon } from '@/shared/components/icons/icons'
 import { Button } from '@/shared/components/ui/Button'
-import { selectCategory } from '@/features/services'
+import { Link } from 'react-router'
+import { servicesPath } from '@/features/services/data/services'
 import { quickLinks } from '@/features/hero/data/quickLinks'
 import { HeroSlideshow } from './HeroSlideshow'
 import styles from './Hero.module.css'
@@ -27,9 +28,9 @@ export function Hero() {
           <p className={styles.lead}>Uñas, pedicure spa, pestañas, cejas, faciales y depilación en un espacio pensado para que salgas sintiéndote increíble.</p>
           <nav className={styles.quick} aria-label="Accesos rápidos a servicios">
             {quickLinks.map((link) => (
-              <a key={link.id} className={styles.quickLink} href="#servicios" onClick={() => selectCategory(link.id)}>
+              <Link key={link.id} className={styles.quickLink} to={servicesPath(link.id)}>
                 {link.label}
-              </a>
+              </Link>
             ))}
           </nav>
           <ul className={styles.facts}>

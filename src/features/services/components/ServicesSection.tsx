@@ -1,21 +1,14 @@
-import { useEffect, useState } from 'react'
 import { SectionHead } from '@/shared/components/ui/SectionHead'
-import { categories, servicesByCategory, type CategoryId, type Service } from '@/features/services/data/services'
-import { categoryEvent } from '@/features/services/utils/selectCategory'
-import { CategoryBlock } from './CategoryBlock'
-import { ServiceDialog } from './ServiceDialog'
+import { Button } from '@/shared/components/ui/Button'
+import { useReveal } from '@/shared/hooks/useReveal'
+import { categories, servicesPath } from '@/features/services/data/services'
+import { CategoryCard } from './CategoryCard'
 import styles from './ServicesSection.module.css'
 
+const staggerMs = 1300
+
 export function ServicesSection() {
-  const [selected, setSelected] = useState<Service | null>(null)
-  const [current, setCurrent] = useState<CategoryId>(categories[0].id)
-
-  useEffect(() => {
-    const onSelect = (event: Event) => setCurrent((event as CustomEvent<CategoryId>).detail)
-    window.addEventListener(categoryEvent, onSelect)
-    return () => window.removeEventListener(categoryEvent, onSelect)
-  }, [])
-
+  const { ref, revealClass } = useReveal<HTMLDivElement>()
   return (
     <section className="section" id="servicios" aria-labelledby="servicios-title">
       <div className="wrap">
@@ -27,34 +20,20 @@ export function ServicesSection() {
               Todo lo que te <em>encanta</em>, en un solo lugar
             </>
           }
-          sub="Toca un servicio para ver el detalle y reservarlo."
+          sub="Elige una categoría para ver sus servicios y reservar."
         />
-        <div className={styles.chips} role="group" aria-label="Elegir categoría de servicios">
-          {categories.map((category) => (
-            <button
-              key={category.id}
-              className={styles.chip}
-              type="button"
-              aria-pressed={current === category.id}
-              onClick={() => setCurrent(category.id)}
-            >
-              {category.name}
-            </button>
+        <div ref={ref} className={`${styles.tiles} ${revealClass}`}>
+          {categories.map((category, i) => (
+            <CategoryCard key={category.id} category={category} featured={i === 0} delayMs={i * staggerMs} />
           ))}
         </div>
-        <div className={styles.categories}>
-          {servicesByCategory.map(({ category, items }) => (
-            <CategoryBlock
-              key={category.id}
-              category={category}
-              items={items}
-              active={current === category.id}
-              onOpen={setSelected}
-            />
-          ))}
+        <div className="center">
+          <Button to={servicesPath()} variant="outline">
+            Ver todos los servicios
+          </Button>
+          <p className="fine">Imágenes referenciales.</p>
         </div>
       </div>
-      <ServiceDialog service={selected} onClose={() => setSelected(null)} />
     </section>
   )
 }

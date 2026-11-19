@@ -3,6 +3,7 @@ import { site } from '@/config/site'
 import { Logo } from '@/shared/components/brand/Logo'
 import { InstagramIcon, MenuIcon } from '@/shared/components/icons/icons'
 import { Button } from '@/shared/components/ui/Button'
+import { Link } from 'react-router'
 import { navLinks } from '@/features/navigation/data/navLinks'
 import { AnnouncementBar } from './AnnouncementBar'
 import { MobileMenu } from './MobileMenu'
@@ -18,14 +19,14 @@ export function Navbar() {
     <header className={styles.header}>
       <AnnouncementBar />
       <div className={`wrap ${styles.inner}`}>
-        <a className={styles.logo} href="#inicio" aria-label="Nails & Go Studio, inicio">
+        <Link className={styles.logo} to="/" aria-label="Nails & Go Studio, inicio">
           <Logo />
-        </a>
+        </Link>
         <nav className={styles.nav} aria-label="Principal">
           {navLinks.map((link) => (
-            <a key={link.href} href={link.href}>
+            <Link key={link.to} to={link.to}>
               {link.label}
-            </a>
+            </Link>
           ))}
         </nav>
         <div className={styles.actions}>

@@ -1,8 +1,17 @@
+import { referencePhotos } from '@/config/photos'
+
 export type CategoryId = 'unas' | 'pedicure' | 'pestanas-cejas' | 'faciales' | 'depilacion'
+
+export interface CategoryPhoto {
+  src: string
+  alt: string
+}
 
 export interface Category {
   id: CategoryId
   name: string
+  tagline: string
+  photos: CategoryPhoto[]
 }
 
 export interface Service {
@@ -16,11 +25,54 @@ export interface Service {
 }
 
 export const categories: Category[] = [
-  { id: 'unas', name: 'Uñas' },
-  { id: 'pedicure', name: 'Pedicure spa' },
-  { id: 'pestanas-cejas', name: 'Pestañas y cejas' },
-  { id: 'faciales', name: 'Faciales' },
-  { id: 'depilacion', name: 'Depilación' },
+  {
+    id: 'unas',
+    name: 'Uñas',
+    tagline: 'Manicure, sistema de uñas y diseños a tu gusto.',
+    photos: [
+      { src: referencePhotos.pinkNails, alt: 'Manicure rosa' },
+      { src: referencePhotos.nudeManicure, alt: 'Manicure en tono nude' },
+      { src: referencePhotos.lilacGlitter, alt: 'Esmaltado lila con glitter' },
+    ],
+  },
+  {
+    id: 'pedicure',
+    name: 'Pedicure spa',
+    tagline: 'Sillón spa con tina para descansar.',
+    photos: [
+      { src: referencePhotos.pedicure, alt: 'Pedicure spa con flores' },
+      { src: referencePhotos.spaTowels, alt: 'Toallas, vela y flores de spa' },
+    ],
+  },
+  {
+    id: 'pestanas-cejas',
+    name: 'Pestañas y cejas',
+    tagline: 'Extensiones y micropigmentación.',
+    photos: [
+      { src: referencePhotos.lashLook, alt: 'Mirada con pestañas definidas' },
+      { src: referencePhotos.browThreading, alt: 'Diseño de cejas' },
+      { src: referencePhotos.browCare, alt: 'Cuidado de cejas en camilla' },
+    ],
+  },
+  {
+    id: 'faciales',
+    name: 'Faciales',
+    tagline: 'Limpieza, cuidado y micropigmentación de labios.',
+    photos: [
+      { src: referencePhotos.facialMask, alt: 'Mascarilla facial' },
+      { src: referencePhotos.facialClay, alt: 'Tratamiento facial con arcilla' },
+      { src: referencePhotos.facialCare, alt: 'Tratamiento de cuidado facial' },
+    ],
+  },
+  {
+    id: 'depilacion',
+    name: 'Depilación',
+    tagline: 'Piel suave, rápido y con cuidado.',
+    photos: [
+      { src: referencePhotos.skinCare, alt: 'Cuidado de la piel' },
+      { src: referencePhotos.skinOil, alt: 'Aceite para el cuidado de la piel' },
+    ],
+  },
 ]
 
 export const services: Service[] = [
@@ -108,6 +160,13 @@ export const services: Service[] = [
 ]
 
 export const categoryName = (id: CategoryId) => categories.find((c) => c.id === id)?.name ?? ''
+
+export const isCategoryId = (value: string | null): value is CategoryId =>
+  categories.some((c) => c.id === value)
+
+export const servicesOf = (id: CategoryId) => services.filter((s) => s.category === id)
+
+export const servicesPath = (id?: CategoryId) => (id ? `/servicios?categoria=${id}` : '/servicios')
 
 export const servicesByCategory = categories
   .map((category) => ({ category, items: services.filter((s) => s.category === category.id) }))

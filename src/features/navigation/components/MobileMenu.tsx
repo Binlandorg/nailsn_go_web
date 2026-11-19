@@ -4,6 +4,7 @@ import { site } from '@/config/site'
 import { CloseIcon, InstagramIcon, TikTokIcon } from '@/shared/components/icons/icons'
 import { Button } from '@/shared/components/ui/Button'
 import { useLockBodyScroll } from '@/shared/hooks/useLockBodyScroll'
+import { Link } from 'react-router'
 import { navLinks } from '@/features/navigation/data/navLinks'
 import styles from './MobileMenu.module.css'
 
@@ -77,10 +78,10 @@ export function MobileMenu({ id, open, onClose, returnFocusRef }: MobileMenuProp
         <nav aria-label="Secciones">
           <ul className={styles.links}>
             {navLinks.map((link) => (
-              <li key={link.href}>
-                <a href={link.href} onClick={onClose}>
+              <li key={link.to}>
+                <Link to={link.to} onClick={onClose}>
                   {link.label}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>

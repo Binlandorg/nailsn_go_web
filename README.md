@@ -4,17 +4,18 @@ Landing de una página para Nails & Go Studio, preparada por Binland como propue
 
 ## Stack
 
-React 19 + TypeScript (strict) + Vite 8, CSS Modules y React Compiler. Organizado por features en `src/features`.
+React 19 + TypeScript (strict) + Vite 8, React Router 7 (modo librería), CSS Modules y React Compiler. Organizado por features en `src/features`.
 
 ## Estructura
 
 | Carpeta | Contenido |
 |---|---|
-| `src/app` | `App.tsx` y estilos globales (`styles/tokens.css`, `base.css`, `ui.css`) |
+| `src/app` | `App.tsx` (rutas), `AppLayout.tsx` (header, footer y barra fija comunes), `ScrollManager.tsx` (scroll al inicio y a anclas al cambiar de ruta) y estilos globales (`styles/tokens.css`, `base.css`, `ui.css`) |
+| `src/pages` | Páginas que componen secciones: `HomePage` y `ServicesPage` |
 | `src/config` | Datos del negocio (`site.ts`) y fotos (`photos.ts`) |
 | `src/features/<sección>` | `components/` (un componente por archivo), `data/` (contenido tipado) e `index.ts` (exporta la sección) |
 | `src/shared/components` | Piezas reutilizables: `brand`, `ui`, `icons`, `decorations` |
-| `src/shared/hooks` | `useInView`, `useReveal`, `useCarouselDots` |
+| `src/shared/hooks` | `useInView`, `useReveal`, `useCarouselDots`, `useRotatingIndex`, `useDocumentTitle`, `useMediaQuery` |
 | `src/shared/utils` | `cn`, `buttonClass`, `whatsapp` |
 
 Imports con el alias `@/` → `src/` (configurado en `tsconfig.app.json` y `vite.config.ts`). Solo los archivos de la misma carpeta se importan con `./`.
@@ -27,6 +28,15 @@ pnpm lint
 pnpm preview
 ```
 
+## Rutas
+
+| Ruta | Página | Notas |
+|---|---|---|
+| `/` | `HomePage` | Landing completa |
+| `/servicios` | `ServicesPage` | Catálogo por categoría (`?categoria=unas`, `pedicure`, `pestanas-cejas`, `faciales`, `depilacion`), panel de detalle y formulario de reserva |
+
+Los enlaces del menú usan `/#seccion`, así funcionan desde cualquier ruta. Para despliegue como SPA están `vercel.json` (Vercel) y `public/_redirects` (Netlify), que redirigen todo a `index.html`.
+
 ## Secciones
 
 | Orden | Sección | Feature |
@@ -34,7 +44,7 @@ pnpm preview
 | — | Barra de anuncios (marquee, solo escritorio) | `navigation` |
 | 1 | Portada a pantalla completa con fotos del interior en fundido, accesos rápidos a categorías, horario y dirección | `hero` |
 | — | Banda de servicios (marquee, solo escritorio) | `shared/components/ui/GlamBand` |
-| 2 | Servicios por categoría con panel de detalle (en móvil, chips que muestran una categoría a la vez) | `services` |
+| 2 | Servicios: 5 tarjetas de categoría con fotos que rotan (Uñas destacada) y botón "Ver todos los servicios" | `services` |
 | 3 | Galería (fotos referenciales, filtros, carrusel continuo en móvil y antes/después) | `gallery` |
 | 4 | Testimonios (bloque de espera con enlace a reseñas hasta tener testimonios confirmados) | `testimonials` |
 | 5 | El estudio (foto del mural con el lema, puntos fuertes, clips e higiene) | `studio` |
@@ -52,7 +62,8 @@ pnpm preview
 | Fotos | `src/assets/photos/` y `src/config/photos.ts` |
 | Fotos de la portada | `heroSlides` en `src/config/photos.ts` (cada foto con `src`, `alt` y `position`; se suman más al arreglo). No usar fotos con el letrero: el logo ya está en el header |
 | Accesos rápidos de la portada | `src/features/hero/data/quickLinks.ts` |
-| Servicios, categorías, duración y precios | `src/features/services/data/services.ts` (alimenta tarjetas, panel y formulario) |
+| Servicios, categorías, duración y precios | `src/features/services/data/services.ts` (alimenta tarjetas, página /servicios, panel y formulario) |
+| Categorías: nombre, frase corta y fotos que rotan | `categories` en `src/features/services/data/services.ts`; las URLs de fotos están en `referencePhotos` de `src/config/photos.ts` |
 | Fotos de trabajos | `src/features/gallery/data/gallery.ts` (campo `image`); hoy usa fotos referenciales de Unsplash (`referencePhotos` en `src/config/photos.ts`) |
 | Puntos fuertes del estudio | `src/features/studio/data/highlights.ts` |
 | Mensajes de la barra de anuncios | `announcements` en `src/config/site.ts` |

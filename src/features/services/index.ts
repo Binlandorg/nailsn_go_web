@@ -1,2 +1,2 @@
 export { ServicesSection } from './components/ServicesSection'
-export { selectCategory } from './utils/selectCategory'
+export { ServicesCatalog } from './components/ServicesCatalog'

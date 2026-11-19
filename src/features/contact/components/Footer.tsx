@@ -3,6 +3,7 @@ import { Logo } from '@/shared/components/brand/Logo'
 import { ClockIcon, InstagramIcon, TikTokIcon, WhatsAppIcon } from '@/shared/components/icons/icons'
 import { buttonClass } from '@/shared/utils/buttonClass'
 import { whatsappLink } from '@/shared/utils/whatsapp'
+import { Link } from 'react-router'
 import { navLinks } from '@/features/navigation/data/navLinks'
 import styles from './Footer.module.css'
 
@@ -11,9 +12,9 @@ export function Footer() {
     <footer className={styles.footer}>
       <div className={`wrap ${styles.inner}`}>
         <div className={styles.brand}>
-          <a className={styles.logo} href="#inicio" aria-label="Nails & Go Studio, volver arriba">
+          <Link className={styles.logo} to="/" aria-label="Nails & Go Studio, volver arriba">
             <Logo tone="light" placement="footer" />
-          </a>
+          </Link>
           <p className={styles.tag}>{site.tagline}</p>
           <div className={styles.quick}>
             <a className={buttonClass({ block: true })} href={whatsappLink()} target="_blank" rel="noopener">
@@ -43,8 +44,8 @@ export function Footer() {
           <h2>Explora</h2>
           <ul>
             {navLinks.map((link) => (
-              <li key={link.href}>
-                <a href={link.href}>{link.label}</a>
+              <li key={link.to}>
+                <Link to={link.to}>{link.label}</Link>
               </li>
             ))}
           </ul>

@@ -27,6 +27,15 @@ export const referencePhotos = {
   polishBottles: unsplash('photo-1599948128020-9a44505b0d1b'),
   pinkFlatlay: unsplash('photo-1631214524020-7e18db9a8f92'),
   brushes: unsplash('photo-1516975080664-ed2fc6a32937'),
+  spaTowels: unsplash('photo-1540555700478-4be289fbecef'),
+  browThreading: unsplash('photo-1519415387722-a1c3bbef716c'),
+  browCare: unsplash('photo-1512290923902-8a9f81dc236c'),
+  lashLook: unsplash('photo-1487412947147-5cebf100ffc2'),
+  facialClay: unsplash('photo-1570172619644-dfd03ed5d881'),
+  facialMask: unsplash('photo-1616394584738-fc6e612e71b9'),
+  facialCare: unsplash('photo-1552693673-1bf958298935'),
+  skinCare: unsplash('photo-1519824145371-296894a0daa9'),
+  skinOil: unsplash('photo-1544161515-4ab6ce6db874'),
 } as const
 
 export interface HeroSlide {
