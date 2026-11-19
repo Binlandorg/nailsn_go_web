@@ -24,6 +24,8 @@ export const site = {
   },
   address: 'Retablo 729, Comas, Lima Norte' as string | null,
   schedule: 'Lunes a domingo, desde las 10:00' as string | null,
+  scheduleShort: 'Lunes a domingo desde 10:00' as string | null,
+  addressShort: 'Retablo 729, Comas' as string | null,
   mapsUrl: placeUrl as string | null,
   mapsEmbedUrl: 'https://www.google.com/maps?q=-11.9323528,-77.0582215&z=17&output=embed' as string | null,
   reviewsUrl: placeUrl as string | null,

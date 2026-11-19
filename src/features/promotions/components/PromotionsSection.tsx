@@ -41,11 +41,10 @@ export function PromotionsSection() {
                 ))}
               </ul>
               <p className="fine">Pregunta por las condiciones en recepción.</p>
-            </div>
-            <div className={`card ${styles.block}`}>
-              <h3>{combos.title}</h3>
-              <p className={styles.text}>{combos.example}</p>
-              {!combos.confirmed && <Badge />}
+              <p className={styles.combo}>
+                <strong>{combos.title}:</strong> {combos.example}
+                {!combos.confirmed && <Badge />}
+              </p>
             </div>
           </div>
         </div>

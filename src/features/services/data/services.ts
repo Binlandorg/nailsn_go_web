@@ -31,7 +31,7 @@ export const services: Service[] = [
     description: 'Limpieza, forma y esmaltado para unas manos impecables.',
     detail: 'Cuidado completo de tus manos: limpieza, forma de uñas y esmaltado en el color que elijas.',
     duration: 'Por confirmar',
-    price: 'Desde S/ —',
+    price: 'Consultar precio',
   },
   {
     id: 'sistema-unas',
@@ -40,7 +40,7 @@ export const services: Service[] = [
     description: 'Uñas resistentes y con el largo que quieres.',
     detail: 'Aplicación de sistema de uñas para lograr largo, forma y resistencia. Pregunta por los tipos disponibles.',
     duration: 'Por confirmar',
-    price: 'Desde S/ —',
+    price: 'Consultar precio',
   },
   {
     id: 'disenos',
@@ -49,7 +49,7 @@ export const services: Service[] = [
     description: 'Francesa, pedrería y diseños para darle tu estilo.',
     detail: 'Agrega a tu manicure o sistema un acabado especial: francesa, pedrería o un diseño a tu gusto.',
     duration: 'Por confirmar',
-    price: 'Desde S/ —',
+    price: 'Consultar precio',
   },
   {
     id: 'pedicure-spa',
@@ -58,7 +58,7 @@ export const services: Service[] = [
     description: 'En sillón spa con tina, para descansar mientras te atendemos.',
     detail: 'Cuidado de pies en nuestros sillones spa con tina: limpieza, forma de uñas y esmaltado, en un ambiente para relajarte.',
     duration: 'Por confirmar',
-    price: 'Desde S/ —',
+    price: 'Consultar precio',
   },
   {
     id: 'extensiones-pestanas',
@@ -67,7 +67,7 @@ export const services: Service[] = [
     description: 'Una mirada definida desde que te levantas.',
     detail: 'Aplicación de extensiones de pestañas para dar largo y volumen a tu mirada. Pregunta por los estilos disponibles.',
     duration: 'Por confirmar',
-    price: 'Desde S/ —',
+    price: 'Consultar precio',
   },
   {
     id: 'micropigmentacion-cejas',
@@ -76,7 +76,7 @@ export const services: Service[] = [
     description: 'Cejas con forma y color que enmarcan tu rostro.',
     detail: 'Técnica de micropigmentación para definir la forma y el color de tus cejas.',
     duration: 'Por confirmar',
-    price: 'Desde S/ —',
+    price: 'Consultar precio',
   },
   {
     id: 'tratamientos-faciales',
@@ -85,7 +85,7 @@ export const services: Service[] = [
     description: 'Limpieza y cuidado para una piel luminosa.',
     detail: 'Tratamientos de limpieza y cuidado facial según lo que necesite tu piel.',
     duration: 'Por confirmar',
-    price: 'Desde S/ —',
+    price: 'Consultar precio',
   },
   {
     id: 'micropigmentacion-labios',
@@ -94,7 +94,7 @@ export const services: Service[] = [
     description: 'Color y definición natural para tus labios.',
     detail: 'Técnica de micropigmentación para dar color y definición a tus labios.',
     duration: 'Por confirmar',
-    price: 'Desde S/ —',
+    price: 'Consultar precio',
   },
   {
     id: 'depilacion',
@@ -103,7 +103,7 @@ export const services: Service[] = [
     description: 'Piel suave con un servicio rápido y cuidadoso.',
     detail: 'Depilación por zonas. Pregunta por las zonas y el método disponibles.',
     duration: 'Por confirmar',
-    price: 'Desde S/ —',
+    price: 'Consultar precio',
   },
 ]
 

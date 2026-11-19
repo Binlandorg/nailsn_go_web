@@ -16,6 +16,8 @@
 }
 .field input:focus-visible, .field select:focus-visible { outline: 3px solid var(--pink); outline-offset: 2px; }
 .field input[aria-invalid="true"], .field select[aria-invalid="true"] { border: 2px solid var(--primary); }
+.direct { justify-self: center; display: inline-flex; align-items: center; min-height: 44px; font-size: 15px; font-weight: 600; color: var(--pink-text); text-underline-offset: 4px; }
+.direct:hover { color: var(--ink); }
 .error { font-size: 14px; font-weight: 600; color: var(--pink-text); background: var(--primary-soft); padding: 10px 14px; border-radius: 12px; }
 
 @media (min-width: 960px) {

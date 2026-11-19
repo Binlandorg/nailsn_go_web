@@ -22,6 +22,7 @@
   --white: #FFFFFF;
   --whatsapp: #25D366;
   --rose-on-dark: #F8B6D6;
+  --rose-light: #FFC7E3;
   --before-from: #ECE7E3;
   --before-to: #DDD5D0;
   --after-from: #F7D9E9;
@@ -61,5 +62,5 @@
 }
 
 @media (max-width: 767px) {
-  :root { --bar-h: 30px; --nav-h: 60px; --mbar-h: 64px; --section-y: 48px; }
+  :root { --bar-h: 0px; --nav-h: 60px; --mbar-h: 64px; --section-y: 48px; }
 }

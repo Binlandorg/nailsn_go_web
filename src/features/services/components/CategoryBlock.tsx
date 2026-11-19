@@ -9,17 +9,18 @@ import styles from './ServicesSection.module.css'
 interface CategoryBlockProps {
   category: Category
   items: Service[]
+  active: boolean
   onOpen: (service: Service) => void
 }
 
-export function CategoryBlock({ category, items, onOpen }: CategoryBlockProps) {
+export function CategoryBlock({ category, items, active, onOpen }: CategoryBlockProps) {
   const { ref, revealClass } = useReveal<HTMLElement>()
   return (
     <section
       ref={ref}
       className={`${styles.category} ${revealClass}`}
       id={`cat-${category.id}`}
-      data-category={category.id}
+      data-active={active}
       aria-labelledby={`cat-${category.id}-title`}
     >
       <h3 id={`cat-${category.id}-title`} className={styles.catTitle}>

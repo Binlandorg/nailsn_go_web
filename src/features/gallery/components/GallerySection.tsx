@@ -1,11 +1,13 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { site } from '@/config/site'
 import { InstagramIcon } from '@/shared/components/icons/icons'
 import { Button } from '@/shared/components/ui/Button'
 import { SectionHead } from '@/shared/components/ui/SectionHead'
+import { useAutoScroll } from '@/shared/hooks/useAutoScroll'
+import { useMediaQuery } from '@/shared/hooks/useMediaQuery'
 import { CategoryIcon } from '@/features/services/components/CategoryIcon'
 import { categories, type CategoryId } from '@/features/services/data/services'
-import { gallery } from '@/features/gallery/data/gallery'
+import { gallery, type GalleryItem } from '@/features/gallery/data/gallery'
 import { BeforeAfter } from './BeforeAfter'
 import styles from './GallerySection.module.css'
 
@@ -16,6 +18,14 @@ const filters: { id: Filter; name: string }[] = [{ id: 'todas', name: 'Todas' },
 export function GallerySection() {
   const [filter, setFilter] = useState<Filter>('todas')
   const items = gallery.filter((item) => (filter === 'todas' ? Boolean(item.image) : item.category === filter))
+  const isCarousel = useMediaQuery('(max-width: 767px)')
+  const looping = isCarousel && items.length > 1
+  const trackRef = useRef<HTMLUListElement>(null)
+  useAutoScroll(trackRef, items.length, { enabled: looping, secondsPerLoop: Math.max(40, items.length * 6) })
+  const rendered: { item: GalleryItem; clone: boolean }[] = [
+    ...items.map((item) => ({ item, clone: false })),
+    ...(looping ? items.map((item) => ({ item, clone: true })) : []),
+  ]
 
   return (
     <section className="section" id="trabajos" aria-labelledby="trabajos-title">
@@ -44,11 +54,12 @@ export function GallerySection() {
             </button>
           ))}
         </div>
-        <ul className={styles.gallery}>
-          {items.map((item) => (
+        <ul ref={trackRef} className={`${styles.gallery} ${looping ? styles.looping : ''}`}>
+          {rendered.map(({ item, clone }) => (
             <li
-              key={`${filter}-${item.title}`}
+              key={`${filter}-${clone ? 'c' : 'o'}-${item.title}`}
               className={`${styles.tile} ${item.image ? styles.photo : ''} ${item.size === 'tall' ? styles.tall : ''}`}
+              aria-hidden={clone || undefined}
             >
               {item.image ? (
                 <>

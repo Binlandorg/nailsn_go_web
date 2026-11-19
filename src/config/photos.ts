@@ -1,5 +1,7 @@
 import fachada from '@/assets/photos/fachada.webp'
 import interior from '@/assets/photos/interior.webp'
+import interiorMural from '@/assets/photos/interior-mural.png'
+import interiorSillones from '@/assets/photos/interior-sillones.png'
 import recepcion from '@/assets/photos/recepcion.webp'
 
 export const photos = {
@@ -27,7 +29,26 @@ export const referencePhotos = {
   brushes: unsplash('photo-1516975080664-ed2fc6a32937'),
 } as const
 
-export const heroVideo = {
-  vertical: '/video/hero-vertical.mp4',
-  horizontal: '/video/hero-horizontal.mp4',
-} as const
+export interface HeroSlide {
+  src: string
+  alt: string
+  position: string
+}
+
+export const heroSlides: HeroSlide[] = [
+  {
+    src: interior,
+    alt: 'Zona de pedicure spa de Nails & Go Studio con sillones de terciopelo rosa',
+    position: '60% 40%',
+  },
+  {
+    src: interiorMural,
+    alt: 'Mural Good Nails en la pared rosa del estudio, junto a un sillón de terciopelo',
+    position: '45% 35%',
+  },
+  {
+    src: interiorSillones,
+    alt: 'Sillones de terciopelo y carrito de atención en la zona de pedicure',
+    position: '40% 30%',
+  },
+]

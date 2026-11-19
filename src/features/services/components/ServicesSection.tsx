@@ -1,40 +1,20 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { SectionHead } from '@/shared/components/ui/SectionHead'
-import { categories, servicesByCategory, type Service } from '@/features/services/data/services'
+import { categories, servicesByCategory, type CategoryId, type Service } from '@/features/services/data/services'
+import { categoryEvent } from '@/features/services/utils/selectCategory'
 import { CategoryBlock } from './CategoryBlock'
 import { ServiceDialog } from './ServiceDialog'
 import styles from './ServicesSection.module.css'
 
 export function ServicesSection() {
   const [selected, setSelected] = useState<Service | null>(null)
-  const [current, setCurrent] = useState<string>(categories[0].id)
-  const listRef = useRef<HTMLDivElement>(null)
-  const chipsRef = useRef<HTMLElement>(null)
+  const [current, setCurrent] = useState<CategoryId>(categories[0].id)
 
   useEffect(() => {
-    const list = listRef.current
-    if (!list || !('IntersectionObserver' in window)) return
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) setCurrent((entry.target as HTMLElement).dataset.category ?? '')
-        }
-      },
-      { rootMargin: '-35% 0px -55% 0px' },
-    )
-    list.querySelectorAll('[data-category]').forEach((node) => observer.observe(node))
-    return () => observer.disconnect()
+    const onSelect = (event: Event) => setCurrent((event as CustomEvent<CategoryId>).detail)
+    window.addEventListener(categoryEvent, onSelect)
+    return () => window.removeEventListener(categoryEvent, onSelect)
   }, [])
-
-  useEffect(() => {
-    const nav = chipsRef.current
-    if (!nav || !window.matchMedia('(max-width: 767px)').matches) return
-    const chip = nav.querySelector<HTMLElement>(`[href="#cat-${current}"]`)
-    if (chip) {
-      const left = nav.scrollLeft + chip.getBoundingClientRect().left - nav.getBoundingClientRect().left - 16
-      nav.scrollTo({ left: Math.max(0, left), behavior: 'smooth' })
-    }
-  }, [current])
 
   return (
     <section className="section" id="servicios" aria-labelledby="servicios-title">
@@ -47,23 +27,30 @@ export function ServicesSection() {
               Todo lo que te <em>encanta</em>, en un solo lugar
             </>
           }
-          sub="Toca un servicio para ver el detalle. Precios y duración por confirmar."
+          sub="Toca un servicio para ver el detalle y reservarlo."
         />
-        <nav ref={chipsRef} className={styles.chips} aria-label="Categorías de servicios">
+        <div className={styles.chips} role="group" aria-label="Elegir categoría de servicios">
           {categories.map((category) => (
-            <a
+            <button
               key={category.id}
               className={styles.chip}
-              href={`#cat-${category.id}`}
-              aria-current={current === category.id ? 'true' : undefined}
+              type="button"
+              aria-pressed={current === category.id}
+              onClick={() => setCurrent(category.id)}
             >
               {category.name}
-            </a>
+            </button>
           ))}
-        </nav>
-        <div ref={listRef} className={styles.categories}>
+        </div>
+        <div className={styles.categories}>
           {servicesByCategory.map(({ category, items }) => (
-            <CategoryBlock key={category.id} category={category} items={items} onOpen={setSelected} />
+            <CategoryBlock
+              key={category.id}
+              category={category}
+              items={items}
+              active={current === category.id}
+              onOpen={setSelected}
+            />
           ))}
         </div>
       </div>

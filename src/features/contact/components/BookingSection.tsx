@@ -88,6 +88,9 @@ export function BookingSection() {
           <button className={buttonClass({ block: true })} type="submit">
             Reservar por WhatsApp
           </button>
+          <a className={styles.direct} href={whatsappLink()} target="_blank" rel="noopener">
+            o escríbenos directo por WhatsApp
+          </a>
         </form>
       </div>
     </section>

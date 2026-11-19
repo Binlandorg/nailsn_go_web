@@ -31,18 +31,18 @@ pnpm preview
 
 | Orden | Sección | Feature |
 |---|---|---|
-| — | Barra de anuncios (marquee) | `navigation` |
-| 1 | Portada (foto del interior, preparada para video) | `hero` |
-| — | Banda de servicios (marquee) | `shared/components/ui/GlamBand` |
-| 2 | Servicios por categoría con panel de detalle | `services` |
-| 3 | Galería (fotos referenciales, filtros y antes/después) | `gallery` |
-| 4 | Testimonios | `testimonials` |
+| — | Barra de anuncios (marquee, solo escritorio) | `navigation` |
+| 1 | Portada a pantalla completa con fotos del interior en fundido, accesos rápidos a categorías, horario y dirección | `hero` |
+| — | Banda de servicios (marquee, solo escritorio) | `shared/components/ui/GlamBand` |
+| 2 | Servicios por categoría con panel de detalle (en móvil, chips que muestran una categoría a la vez) | `services` |
+| 3 | Galería (fotos referenciales, filtros, carrusel continuo en móvil y antes/después) | `gallery` |
+| 4 | Testimonios (bloque de espera con enlace a reseñas hasta tener testimonios confirmados) | `testimonials` |
 | 5 | El estudio (foto del mural con el lema, puntos fuertes, clips e higiene) | `studio` |
 | 6 | Promociones (ruleta y combos) | `promotions` |
 | 7 | Reservas (formulario que abre WhatsApp) | `contact` |
 | 8 | Preguntas frecuentes | `faq` |
 | 9 | Ubicación y horario | `contact` |
-| — | Header, barra inferior móvil, botón flotante de WhatsApp y footer | `navigation`, `contact` |
+| — | Header (menú hamburguesa en móvil y tablet), barra inferior móvil, botón flotante de WhatsApp en escritorio y footer | `navigation`, `contact` |
 
 ## Dónde se edita cada cosa
 
@@ -50,12 +50,13 @@ pnpm preview
 |---|---|
 | WhatsApp, Instagram, dirección, horario, mapa, enlace de reseñas | `src/config/site.ts` (los valores `null` se muestran como "Por confirmar") |
 | Fotos | `src/assets/photos/` y `src/config/photos.ts` |
-| Videos de portada | `public/video/hero-vertical.mp4` (móvil) y `public/video/hero-horizontal.mp4` (escritorio) |
+| Fotos de la portada | `heroSlides` en `src/config/photos.ts` (cada foto con `src`, `alt` y `position`; se suman más al arreglo). No usar fotos con el letrero: el logo ya está en el header |
+| Accesos rápidos de la portada | `src/features/hero/data/quickLinks.ts` |
 | Servicios, categorías, duración y precios | `src/features/services/data/services.ts` (alimenta tarjetas, panel y formulario) |
 | Fotos de trabajos | `src/features/gallery/data/gallery.ts` (campo `image`); hoy usa fotos referenciales de Unsplash (`referencePhotos` en `src/config/photos.ts`) |
 | Puntos fuertes del estudio | `src/features/studio/data/highlights.ts` |
 | Mensajes de la barra de anuncios | `announcements` en `src/config/site.ts` |
-| Testimonios | `src/features/testimonials/data/testimonials.ts` |
+| Testimonios | `src/features/testimonials/data/testimonials.ts` (solo se muestran los que tienen `confirmed: true`) |
 | Premios de la ruleta y combos | `src/features/promotions/data/promotions.ts` |
 | Preguntas frecuentes | `src/features/faq/data/faq.ts` |
 | Menú | `src/features/navigation/data/navLinks.ts` |
@@ -66,10 +67,12 @@ pnpm preview
 
 - Tipografía: Outfit 800 para títulos (escala fija h1/h2/h3), Montserrat para texto. Great Vibes solo en la palabra "aesthetic" del hero. El logo usa sus propias fuentes y no se toca.
 - Encabezados de sección: un solo componente `SectionHead` (kicker rosa en mayúsculas + título + subtítulo corto).
-- Botón primario rosa `--pink-strong` sólido con texto blanco (hover `--pink`) y secundario con borde rosa; misma altura, radio y sombra (`shared/components/ui/Button`).
+- Botón primario rosa `--pink-strong` sólido con texto blanco (hover `--pink-text`) y secundario con borde rosa; misma altura, radio y sombra (`shared/components/ui/Button`).
 - Tarjetas e imágenes: radio `--radius` y sombra `--shadow` (clase global `.card`).
 - Secciones con el mismo espaciado (`--section-y`) y fondos alternados blanco cálido / rosa pastel automáticos (`ui.css`).
 - Una sola animación de entrada (`useReveal`: fade + leve subida); marquee y sparkles discretos.
+- Portada: fundido de 1,5 s cada 7 s con zoom sutil (`HeroSlideshow`). Con `prefers-reduced-motion` queda una sola foto fija.
+- Carruseles de imágenes (galería en móvil) se desplazan solos y lento en bucle (`useAutoScroll`, clones con `aria-hidden`), se pausan al tocar, al pasar el mouse o con foco, y se pueden deslizar a mano. Los carruseles con texto no se mueven solos.
 
 ## Marca
 
@@ -94,7 +97,7 @@ pnpm preview
 - Confirmar dirección, horario y la ficha de Google Maps.
 - Lista final de servicios, descripciones, duración y precios.
 - Fotos reales de trabajos, antes y después, y clips verticales del estudio.
-- Videos de portada.
+- Fotos del local en alta resolución para la portada en escritorio (las actuales miden 473 a 765 px de ancho y se ven blandas a pantalla completa).
 - Testimonios reales con autorización.
 - Condiciones de la ruleta y combos.
 - Respuestas de preguntas frecuentes y proceso de higiene.
